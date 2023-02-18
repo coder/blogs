@@ -2,8 +2,62 @@
 
 Coder templates are the basis of your Coder deployment. They are the DNA that is used to create your Coder workspaces.
 
-## Templates use cases
+[![Coder templates](./static/templates.png)](./static/templates.png)
 
-You may have a template for each of your teams e.g. a template for your frontend team and a template for your backend team. You can also create a template for each of your projects e.g. a template for your cool-project and a template for your awesome-project.
+## Organizing your templates
 
-Moreover, you may have a single template that is used for all your projects but with a different image for each project.
+There are many ways to organize your templates. You can use them to:
+
+### Team based templates
+
+A template for each of your teams e.g. a template for your _frontend_ team and a template for your _backend_ team.
+
+### Project based templates
+
+A template for each of your projects e.g. a template for your _cool-project_ and a template for your _awesome-project_.
+
+### Image based templates
+
+A single template that is used for all your projects but with a different image for each project.
+
+## What is the difference between a template and an image?
+
+A template is a collection of settings that are used to create a workspace. An image is a collection of software that is used to create a workspace. A template can use one or more images. For example, you can have a template that uses the _ubuntu_ image and the _node_ image and the user will have the choice of which image to use when creating a workspace. Choices are managed by a terraform variable e.g.
+
+```hcl
+    variable "image" {
+      type        = string
+      description = "The image to use for the workspace"
+      default     = "ubuntu"
+      validation {
+        condition     = contains(["ubuntu", "node"], var.image)
+        error_message = "The image must be either ubuntu or node"
+      }
+    }
+```
+
+## How to create a template
+
+### Create a new repository
+
+Create a new repository in your GitHub account. This will be the repository that contains your Coder templates.
+
+### Create a new directory
+
+Create a new directory in your repository called `deeplearning`.
+
+### Create a new file
+
+Create a new file in the _templates_ directory called `main.tf` This is the file that contains the Coder template.
+
+```hcl
+    provider "coder" {
+      name = "coder"
+      version = "0.6.11"
+    }
+
+    provider "docker" {
+
+      version = "2.7.2"
+    }
+```
