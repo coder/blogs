@@ -38,26 +38,27 @@ A template is a collection of settings that are used to create a workspace. An i
 
 ## Creating your first template
 
-### Create a new repository
+1. Create a new repository in your GitHub account. This will be the repository that contains your Coder templates.
 
-Create a new repository in your GitHub account. This will be the repository that contains your Coder templates.
+2. Create a new directory in your repository called `deeplearning`.
 
-### Create a new directory
+3. Create a new file in the _templates_ directory called `main.tf` This is the file that contains the Coder template.
 
-Create a new directory in your repository called `deeplearning`.
+   ```hcl
+     terraform {
+       required_providers {
+          coder = {
+            source  = "coder/coder"
+            version = "0.6.12"
+          }
+         docker = {
+           source = "kreuzwerker/docker"
+           version = "3.0.1"
+         }
+       }
+     }
 
-### Create a new file
-
-Create a new file in the _templates_ directory called `main.tf` This is the file that contains the Coder template.
-
-```hcl
-    provider "coder" {
-      name = "coder"
-      version = "0.6.11"
-    }
-
-    provider "docker" {
-
-      version = "2.7.2"
-    }
-```
+     provider "docker" {
+       # Configuration options
+     }
+   ```
