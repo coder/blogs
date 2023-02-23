@@ -1,6 +1,6 @@
 # How to manage Coder templates
 
-Coder templates are the basis of your Coder deployment. They are the DNA that is used to create your Coder workspaces.
+Coder templates are the DNA used to create workspaces. They abstract the complexity of cloud environments, allowing developers to focus on their projects.
 
 [![Coder templates](./static/templates.png)](./static/templates.png)
 
@@ -36,7 +36,7 @@ A template is a collection of settings that are used to create a workspace. An i
     }
 ```
 
-## How to create a template
+## Creating your first template
 
 ### Create a new repository
 
