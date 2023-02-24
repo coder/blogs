@@ -8,17 +8,13 @@ Coder templates are the DNA used to create workspaces. They abstract the complex
 
 There are many ways to organize your templates. You can use them to:
 
-### Team based templates
+- **Team based templates**: A template for each of your teams e.g. a template for your _frontend_ team and a template for your _backend_ team.
 
-A template for each of your teams e.g. a template for your _frontend_ team and a template for your _backend_ team.
+- **Project based templates**: A template for each of your projects e.g. a template for your _cool-project_ and a template for your _awesome-project_.
 
-### Project based templates
+- **Image based templates**: A single template that is used for all your projects but with a different image for each project.
 
-A template for each of your projects e.g. a template for your _cool-project_ and a template for your _awesome-project_.
-
-### Image based templates
-
-A single template that is used for all your projects but with a different image for each project.
+![Coder templates](./static/templates-cases.png)
 
 ## What is the difference between a template and an image?
 
@@ -37,6 +33,9 @@ A template is a collection of settings that are used to create a workspace. An i
 ```
 
 ## Creating your first template
+
+![Workspace creation](./static/workspace-creation-1.png)
+![Workspace creation](./static/workspace-creation-2.png)
 
 1. Create a new repository in your GitHub account. This will be the repository that contains your Coder templates.
 
@@ -61,6 +60,8 @@ A template is a collection of settings that are used to create a workspace. An i
    ```
 
 4. Create a rich-parameter variable of the form `data coder_parameter <name>`. This will be used to create a rich parameter in the template. For example:
+
+   > See full list of available parameters [here](https://registry.terraform.io/providers/coder/coder/latest/docs/data-sources/parameter)
 
    ```hcl
     data "coder_parameter" "framework" {
@@ -109,9 +110,9 @@ A template is a collection of settings that are used to create a workspace. An i
     }
    ```
 
-5. **Choosing the image:** For this example, we will use the pre-built [Deep Learning](https://github.com/matifali/dockerdl) images.
+5. For this example, we will use the pre-built [DockerDL](https://github.com/matifali/dockerdl) images.
 
-   > **Note**: You can use any image you want. You can use a pre-built image or coder can build an image for you from the Dockerfile in _images_ directory.
+   > **Note**: You can use any image you want. You can use a pre-built image or coder can build an image for you from the Dockerfile in _images_ directory. See
 
    ```hcl
    data "docker_registry_image" "dockerdl" {
@@ -129,7 +130,7 @@ A template is a collection of settings that are used to create a workspace. An i
 
 > Full example is available [here](https://github.com/matifali/coder-templates/blob/main/deeplearning/main.tf)
 
-## The result
+## Next steps
 
-![Workspace creation](./static/workspace-creation-1.png)
-![Workspace creation](./static/workspace-creation-2.png)
+- [How to keep your templates up to date](./keep-up-to-date)
+  - A guide on how to keep your templates up to date with the latest changes in the upstream repository using GitHub Actions. This will allow you to keep your templates up to date without having to manually update them. [Read more](./keep-up-to-date)
