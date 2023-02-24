@@ -38,26 +38,98 @@ A template is a collection of settings that are used to create a workspace. An i
 
 ## Creating your first template
 
-### Create a new repository
+1. Create a new repository in your GitHub account. This will be the repository that contains your Coder templates.
 
-Create a new repository in your GitHub account. This will be the repository that contains your Coder templates.
+2. Create a new directory in your repository called `deeplearning`.
 
-### Create a new directory
+3. Create a new file in the `deeplearning` directory called `main.tf`. This is the terraform file that will be used to create your template.
 
-Create a new directory in your repository called `deeplearning`.
+   ```hcl
+   terraform {
+     required_providers {
+       coder = {
+         source = "coder/coder"
+         version = "0.6.14"
+       }
+       docker = {
+         source = "kreuzwerker/docker"
+         version = "3.0.1"
+       }
+     }
+   }
+   ...
+   ```
 
-### Create a new file
+4. Create a rich-parameter variable of the form `data coder_parameter <name>`. This will be used to create a rich parameter in the template. For example:
 
-Create a new file in the _templates_ directory called `main.tf` This is the file that contains the Coder template.
-
-```hcl
-    provider "coder" {
-      name = "coder"
-      version = "0.6.11"
+   ```hcl
+    data "coder_parameter" "framework" {
+      name        = "Framework"
+      icon        = "https://raw.githubusercontent.com/matifali/logos/main/memory.svg"
+      description = "Choose your preffered framework"
+      type        = "string"
+      mutable     = false
+      default     = "no-conda"
+      option {
+        name        = "PyTorch"
+        description = "PyTorch"
+        value       = "pytorch"
+        icon        = "https://raw.githubusercontent.com/matifali/logos/main/pytorch.svg"
+      }
+      option {
+        name        = "PyTorch Nightly"
+        description = "PyTorch Nightly"
+        value       = "pytorch-nightly"
+        icon        = "https://raw.githubusercontent.com/matifali/logos/main/pytorch.svg"
+      }
+      option {
+        name        = "Tensorflow"
+        description = "Tensorflow"
+        value       = "tensorflow"
+        icon        = "https://raw.githubusercontent.com/matifali/logos/main/tensorflow.svg"
+      }
+      option {
+        name        = "Tensorflow + PyTorch"
+        description = "Tensorflow + PyTorch"
+        value       = "no-conda"
+        icon        = "https://raw.githubusercontent.com/matifali/logos/main/tf-torch.svg"
+      }
+      option {
+        name        = "Tensorflow + PyTorch + conda"
+        description = "Tensorflow + PyTorch + conda"
+        value       = "conda"
+        icon        = "https://raw.githubusercontent.com/matifali/logos/main/tf-torch-conda.svg"
+      }
+      option {
+        name        = "Conda"
+        description = "Only conda (install whatever you need)"
+        value       = "conda-base"
+        icon        = "https://raw.githubusercontent.com/matifali/logos/main/conda.svg"
+      }
     }
+   ```
 
-    provider "docker" {
+5. **Choosing the image:** For this example, we will use the pre-built [Deep Learning](https://github.com/matifali/dockerdl) images.
 
-      version = "2.7.2"
-    }
-```
+   > **Note**: You can use any image you want. You can use a pre-built image or coder can build an image for you from the Dockerfile in _images_ directory.
+
+   ```hcl
+   data "docker_registry_image" "dockerdl" {
+     name = "matifali/dockerdl:${data.coder_parameter.framework.value}"
+   }
+
+   resource "docker_image" "dockerdl" {
+     name          = data.docker_registry_image.dockerdl.name
+     pull_triggers = [data.docker_registry_image.dockerdl.sha256_digest]
+     # Keep alive for other workspaces to use upon deletion
+     keep_locally = true
+   }
+
+   ```
+
+> Full example is available [here](https://github.com/matifali/coder-templates/blob/main/deeplearning/main.tf)
+
+## The result
+
+![Workspace creation](./static/workspace-creation-1.png)
+![Workspace creation](./static/workspace-creation-2.png)
