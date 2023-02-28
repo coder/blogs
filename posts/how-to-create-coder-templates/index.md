@@ -8,9 +8,9 @@ Coder templates are the DNA used to create workspaces. They are typically manage
 
 There are many ways to organize your templates:
 
-- **Team based templates**: A template for each of your teams e.g. a template for your _frontend_ team and a template for your _backend_ team.
+- **Team based templates**: A template for each of your teams (e.g. a template for your _frontend_ team and a template for your _backend_ team.)
 
-- **Project based templates**: A template for each of your projects e.g. a template for your _cool-project_ and a template for your _awesome-project_.
+- **Project based templates**: A template for each of your projects (e.g. a template for your _cool-project_ and a template for your _awesome-project_.)
 
 - **Image based templates**: A single template that is used for all your projects but with a different image for each project.
 
