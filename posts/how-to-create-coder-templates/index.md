@@ -1,4 +1,4 @@
-# How to create Coder templates
+# Managing Coder templates
 
 Coder templates are the DNA used to create workspaces. They abstract the complexity of cloud environments, allowing developers to focus on their projects.
 
