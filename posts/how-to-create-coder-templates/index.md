@@ -18,7 +18,7 @@ There are many ways to organize your templates:
 
 ## What is the difference between a template and an image?
 
-A template is a collection of settings that are used to create a workspace. An image is a collection of software that is used to create a workspace. A template can use one or more images. For example, you can have a template that uses the _ubuntu_ image and the _node_ image and the user will have the choice of which image to use when creating a workspace. Choices are managed by a terraform variable e.g.
+A template is a collection of infrastructure as code (Terraform) used to create workspaces. An image is a collection of software (e.g. Docker) that is used to create a workspace. A template can use one or more images. For example, you can have a template that uses the _golang_ image and the _node_ image, and the user will have the choice of which image to use when creating a workspace. Choices are managed by a terraform variable:
 
 ```hcl
     variable "image" {
