@@ -1,6 +1,6 @@
 # Managing Coder templates
 
-Coder templates are the DNA used to create workspaces. They abstract the complexity of cloud environments, allowing developers to focus on their projects.
+Coder templates are the DNA used to create workspaces. They are typically managed by a platform/infrastructure group and allow developers to focus on their projects instead of the underlying infrastructure for their workspaces.
 
 [![Coder templates](./static/templates.png)](./static/templates.png)
 
