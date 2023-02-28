@@ -21,16 +21,15 @@ There are many ways to organize your templates:
 A template is a collection of infrastructure as code (Terraform) used to create workspaces. An image is a collection of software (e.g. Docker) that is used to create a workspace. A template can use one or more images. For example, you can have a template that uses the _golang_ image and the _node_ image, and the user will have the choice of which image to use when creating a workspace. Choices are managed by a terraform variable:
 
 ```hcl
-    variable "image" {
-      type        = string
-      description = "The image to use for the workspace"
-      default     = "ubuntu"
-      validation {
-        condition     = contains(["ubuntu", "node"], var.image)
-        error_message = "The image must be either ubuntu or node"
-      }
-    }
-```
+variable "image" {
+    type        = string
+    description = "The image to use for the workspace"
+    default     = "ubuntu"
+    validation {
+    condition     = contains(["ubuntu", "node"], var.image)
+      error_message = "The image must be either ubuntu or node"
+  }
+}
 
 ## Creating your first template
 
