@@ -6,7 +6,7 @@ Coder templates are the DNA used to create workspaces. They abstract the complex
 
 ## Organizing your templates
 
-There are many ways to organize your templates. You can use them to:
+There are many ways to organize your templates:
 
 - **Team based templates**: A template for each of your teams e.g. a template for your _frontend_ team and a template for your _backend_ team.
 
