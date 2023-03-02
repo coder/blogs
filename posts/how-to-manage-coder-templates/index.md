@@ -133,4 +133,4 @@ resource "docker_image" "dockerdl" {
 
 ## Next steps
 
-[How to keep your templates up to date](./keep-up-to-date): A guide on how to keep your templates up to date with the latest changes in the upstream repository using GitHub Actions. This will allow you to keep your templates up to date without having to manually update them. [Read more](./keep-up-to-date)
+[How to keep your templates up to date](../keep-up-to-date): A guide on how to keep your templates up to date with the latest changes in the upstream repository using GitHub Actions. This will allow you to keep your templates up to date without having to manually update them. [Read more](../keep-up-to-date)
