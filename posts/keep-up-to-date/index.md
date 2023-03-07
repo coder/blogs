@@ -109,3 +109,7 @@ jobs:
 ```
 
 5. Push the changes to the template to the git repository. This will trigger the workflow and push the changes to the template to the Coder server.
+
+> See Coder's dogfood example workflow [here](https://github.com/coder/coder/main/.github/workflows/dogfood.yaml).
+>
+> See a community workflow that uses [Update Coder Template](https://github.com/marketplace/actions/update-coder-template) action [here](https://github.com/matifali/coder-templates/blob/main/.github/workflows/deeplearning.yaml)
