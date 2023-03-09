@@ -1,12 +1,8 @@
 # Keeping Coder templates up to date
 
-[Templates](https://coder.com/docs/v2/latest/templates) in Coder help keep each developer's workspace consistent. When a new template version is created (e.g. with a newer version of Java or more CPU cores), all developers are notified to update their workspaces.  
+[Templates](https://coder.com/docs/v2/latest/templates) in Coder help keep each developer's workspace consistent. When a new template version is created (e.g. with a newer version of Java or more CPU cores), all developers are notified to update their workspaces.
 
 Updating an existing Coder template is easy. You can make changes to the template directly locally and then push the changes to Coder server in multiple ways.
-
-- [Keeping Coder templates up to date](#keeping-coder-templates-up-to-date)
-  - [Using the Coder CLI](#using-the-coder-cli)
-  - [Using CI/CD](#using-cicd)
 
 To keep your Coder templates up to date, you need to push the changes to Coder server. A user with a **`template-admin`** or **`owner`** role can update templates.
 
@@ -38,12 +34,7 @@ coder tokens create --lifetime 8760h0m0s
 4. Add the following steps to the workflow.
 
 ```yaml
-
-.github/workflows/ci.yaml
-@@ -1,44 +0,0 @@
-# An action to push templates to coder server
-
-name: Push templates to coder server
+name: Push template to coder server
 
 on:
   push:
@@ -77,10 +68,9 @@ jobs:
           # Consumed by Coder CLI
           CODER_URL: https://coder.example.com
           CODER_SESSION_TOKEN: ${{ secrets.CODER_SESSION_TOKEN }}
-
 ```
 
-or you can use the following workflow from github marketplace [Update Coder Template](https://github.com/marketplace/actions/update-coder-template)
+or you can use the [Update Coder Template](https://github.com/marketplace/actions/update-coder-template) action from the GitHub marketplace.
 
 ```yaml
 name: Update Coder Template
@@ -89,6 +79,10 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
     update:
@@ -110,7 +104,7 @@ jobs:
                 CODER_SESSION_TOKEN: ${{ secrets.CODER_SESSION_TOKEN }}
 ```
 
-5. Push the changes to the template to the git repository. This will trigger the workflow and push the changes to the template to the Coder server.
+1. Push the changes to the template to the git repository. This will trigger the workflow and push the changes to the template to the Coder server.
 
 > See Coder's dogfood example workflow [here](https://github.com/coder/coder/main/.github/workflows/dogfood.yaml).
 >
