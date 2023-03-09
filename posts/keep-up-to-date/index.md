@@ -1,5 +1,7 @@
 # Keeping Coder templates up to date
 
+[Templates](https://coder.com/docs/v2/latest/templates) in Coder help keep each developer's workspace consistent. When a new template version is created (e.g. with a newer version of Java or more CPU cores), all developers are notified to update their workspaces.  
+
 Updating an existing Coder template is easy. You can make changes to the template directly locally and then push the changes to Coder server in multiple ways.
 
 - [Keeping Coder templates up to date](#keeping-coder-templates-up-to-date)
