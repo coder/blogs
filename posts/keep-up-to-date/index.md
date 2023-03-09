@@ -8,7 +8,7 @@ Updating an existing Coder template is easy. You can make changes to the templat
   - [Using the Coder CLI](#using-the-coder-cli)
   - [Using CI/CD](#using-cicd)
 
-To keep your Coder templates up to date, you need to push the changes to Coder server. A user with a **`template-admin`** or **`owner`** role can update the template
+To keep your Coder templates up to date, you need to push the changes to Coder server. A user with a **`template-admin`** or **`owner`** role can update templates.
 
 ## Using the Coder CLI
 
