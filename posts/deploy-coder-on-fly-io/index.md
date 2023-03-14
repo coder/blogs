@@ -84,15 +84,16 @@ Run the following command to deploy the app from the directory where the `fly.to
 flyctl deploy
 ```
 
-7. Scale the to use more memory:
+7. Scale the Coder app to 1GB of memory:
 
 ```bash
-flyctl scale memory 1024 --app APP-NAME
+flyctl scale memory 1024 --app <app-name>
 ```
 
-8. Go to the URL of your app and start using Coder!
+8. Congratulations! You've deployed Coder on Fly.io!. Go to the URL of your app and create your first user!
 
 > If you want to use a custom domain, you can do so by following the instructions [here](https://fly.io/docs/app-guides/custom-domains-with-fly/).
+> ![Welcome to Coder](./static/welcome.png)
 
 ## Create your first template
 
@@ -104,36 +105,48 @@ A template is a set of instructions that Coder uses to create a workspace. In th
 curl -fsSL https://coder.com/get-coder.sh | bash
 ```
 
-2. Create a new template by running the following command and following the prompts:
+2. Login to Coder:
+
+```bash
+coder login <coder-url>
+```
+
+3. Create a new template by running the following command and following the prompts:
 
 ```bash
 coder templates init
 ```
 
-3. Choose the `fly-docker-image` template and cd into the `fly-docker-image` directory.
+4. Choose the `fly-docker-image` template and cd into the `fly-docker-image` directory.
 
-4. Edit the `main.tf` file and update the `fly_org` and `fly_api_token` variables with your Fly.io org name and API token. You can get your API token by running the following command:
+5. Edit the `main.tf` file and update the `fly_org` and `fly_api_token` variables with your Fly.io org name and API token. You can get your API token by running the following command:
 
 ```bash
 flyctl auth token
 ```
 
-5. Create the new template by running the following command from the `fly-docker-image` directory:
+or set a new fly.io secret:
+
+```bash
+export FLY_API_TOKEN=$(flyctl auth token)
+echo $FLY_API_TOKEN
+flyctl secrets set FLY_API_TOKEN=$FLY_API_TOKEN
+```
+
+6. Create the new template by running the following command from the `fly-docker-image` directory:
 
 ```bash
 coder templates create fly-docker-image
 ```
 
-6. Go to the Coder UI and create a new workspace using the `fly-docker-image` template.
+7. Go to the Coder UI and create a new workspace using the `fly-docker-image` template.
 
-7. This will deploy code-server on a Fly.io machine. You can access the code-server instance by clicking on the `Code Server` button.
+8. This will deploy code-server on a Fly.io machine using the docker image. You can access the code-server instance by clicking on the `Code Server` button.
 
 ## Update Coder
 
-To update the Coder version, run `flyctl deploy --aap APP-NAME` again and it will pull the latest version of Coder.
-
-Congratulations! You've deployed Coder on Fly.io!
+To update the Coder version, run `flyctl deploy --aap <app-name>` again and it will pull the latest version of Coder.
 
 ## Next Steps
 
-> To write your first coder template, check out the [template docs](https://coder.com/docs/v2/latest/templates).
+> To modify or write your first coder template, check out the [template docs](https://coder.com/docs/v2/latest/templates).
