@@ -119,29 +119,21 @@ coder templates init
 
 4. Choose the `fly-docker-image` template and cd into the `fly-docker-image` directory.
 
-5. Edit the `main.tf` file and update the `fly_org` and `fly_api_token` variables with your Fly.io org name and API token. You can get your API token by running the following command:
+5. Create the new template by running the following command from the `fly-docker-image` directory:
 
 ```bash
-flyctl auth token
+coder templates push fly-docker-image --variable fly_api_token=$(flyctl auth token)
 ```
 
-or set a new fly.io secret:
+> instead of setting variable `fly_api_token` you can also set a fly.io secret with the name `FLY_API_TOKEN`
+>
+> ```bash
+> flyctl secrets set FLY_API_TOKEN=$(flyctl auth token)
+> ```
 
-```bash
-export FLY_API_TOKEN=$(flyctl auth token)
-echo $FLY_API_TOKEN
-flyctl secrets set FLY_API_TOKEN=$FLY_API_TOKEN
-```
+6. Go to the Coder UI and create a new workspace using the `fly-docker-image` template.
 
-6. Create the new template by running the following command from the `fly-docker-image` directory:
-
-```bash
-coder templates create fly-docker-image
-```
-
-7. Go to the Coder UI and create a new workspace using the `fly-docker-image` template.
-
-8. This will deploy code-server on a Fly.io machine using the docker image. You can access the code-server instance by clicking on the `Code Server` button.
+7. This will deploy code-server on a Fly.io machine using the docker image. You can access the code-server instance by clicking on the `Code Server` button.
 
 ## Update Coder
 
