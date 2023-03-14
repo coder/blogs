@@ -1,6 +1,6 @@
 # Deploy Coder on Fly.io
 
-Fly.io is a platform for deploying applications to the edge. It's a great fit for Coder because it's easy to deploy and scale, and it's easy to manage. In this guide, we'll walk through deploying Coder on Fly.io.
+Fly.io is a platform for deploying applications to the edge. It's a great fit for Coder because it's easy to deploy and scale, and it's easy to manage. In this guide, we'll walk through deploying Coder on Fly.io and creating workspaces as Fly.io (firecracker) machines.
 
 ## Prerequisites
 
