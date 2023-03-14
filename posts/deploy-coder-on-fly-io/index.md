@@ -18,27 +18,27 @@ flyctl auth login
 2. Create a new fly postgres database:
 
 ```bash
-flyctl postgres create DATABASE-NAME
+flyctl postgres create --name <postgres-app-name>
 ```
 
 3. Create a new fly app:
 
 ```bash
-flyctl apps create APP-NAME
+flyctl apps create --name <app-name>
 ```
 
 4. Connect to the database with the coder fly app:
 
 ```bash
-flyctl postgres connect DATABASE-NAME --app APP-NAME
+flyctl postgres attach --app <app-name> <postgres-app-name>
 ```
 
-This will print out a connection string. Copy the connection string and save it to be used in the next step.
+**Important** Copy the connection string and save it for later.
 
-5. Edit the `fly.toml` file and update as per the example below:
+1. Edit the `fly.toml` file and update as per the example below:
 
 ```toml
-app = "APP-NAME"
+app = "<app-name>" # Replace <app-name> with the name of your app
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "ams"  # See a list of regions here: https://fly.io/docs/reference/regions/
@@ -51,9 +51,9 @@ primary_region = "ams"  # See a list of regions here: https://fly.io/docs/refere
    image = "ghcr.io/coder/coder:latest"
 
 [env]
-  CODER_ACCESS_URL = "https://APP-NAME.fly.dev" # make sure to replace APP-NAME with your app name
+  CODER_ACCESS_URL = "https://<app-name>.fly.dev" # Replace <app-name> with the name of your app
   CODER_HTTP_ADDRESS = "0.0.0.0:3000"
-  CODER_PG_CONNECTION_URL = "ADD YOUR POSTGRES CONNECTION STRING HERE"
+  CODER_PG_CONNECTION_URL = "DATABASE_URL" # Replace DATABASE_URL with the connection string you copied from step 4
   #CODER_VERBOSE = "true" # Uncomment this if you want to see more logs
   CODER_TELEMETRY_INSTALL_SOURCE = "fly.io"
 
@@ -92,7 +92,41 @@ flyctl scale memory 1024 --app APP-NAME
 
 8. Go to the URL of your app and start using Coder!
 
-> If you want to use a custom domain, you can do so by following the instructions [here](https://fly.io/docs/getting-started/custom-domains/).
+> If you want to use a custom domain, you can do so by following the instructions [here](https://fly.io/docs/app-guides/custom-domains-with-fly/).
+
+## Create your first template
+
+A template is a set of instructions that Coder uses to create a workspace. In this section, we'll create a template that uses a Fly.io machine as the workspace.
+
+1. Install Coder locally by following the instructions [here](https://coder.com/docs/v2/latest/install) or if you are on linux/macOS, you can run the following command:
+
+```bash
+curl -fsSL https://coder.com/get-coder.sh | bash
+```
+
+2. Create a new template by running the following command and following the prompts:
+
+```bash
+coder templates init
+```
+
+3. Choose the `fly-docker-image` template and cd into the `fly-docker-image` directory.
+
+4. Edit the `main.tf` file and update the `fly_org` and `fly_api_token` variables with your Fly.io org name and API token. You can get your API token by running the following command:
+
+```bash
+flyctl auth token
+```
+
+5. Create the new template by running the following command from the `fly-docker-image` directory:
+
+```bash
+coder templates create fly-docker-image
+```
+
+6. Go to the Coder UI and create a new workspace using the `fly-docker-image` template.
+
+7. This will deploy code-server on a Fly.io machine. You can access the code-server instance by clicking on the `Code Server` button.
 
 ## Update Coder
 
@@ -103,4 +137,3 @@ Congratulations! You've deployed Coder on Fly.io!
 ## Next Steps
 
 > To write your first coder template, check out the [template docs](https://coder.com/docs/v2/latest/templates).
-> We have an official [fly.io template](https://github.com/coder/coder/main/examples/templates/fly-docker-image) that you can use as a starting point.
