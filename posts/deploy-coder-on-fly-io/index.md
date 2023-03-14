@@ -45,7 +45,7 @@ primary_region = "ams"  # See a list of regions here: https://fly.io/docs/refere
 
 [experimental]
   auto_rollback = true
-  private_network = true  # This is needed for Coder to connect to the database
+  private_network = true  # Allows Coder to connect to the database
 
 [build]
    image = "ghcr.io/coder/coder:latest"
