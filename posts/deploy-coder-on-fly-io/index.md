@@ -24,18 +24,24 @@ flyctl postgres create --name <postgres-app-name>
 3. Create a new fly app:
 
 ```bash
-flyctl apps create --name <app-name>
+flyctl apps create --name <coder-app-name>
 ```
 
 4. Connect to the database with the coder fly app:
 
 ```bash
-flyctl postgres attach --app <app-name> <postgres-app-name>
+flyctl postgres attach --app <coder-app-name> <postgres-app-name>
 ```
 
-**Important** Copy the connection string and save it for later.
+**Important** Copy the connection string that is displayed in the terminal. You'll need it in the next step.
 
-1. Edit the `fly.toml` file and update as per the example below:
+5. Create a new secret with the name `CODER_PG_CONNECTION_URL` and the value as the connection string you copied in the previous step.
+
+```
+flyctl secrets set CODER_PG_CONNECTION_URL=<connection-string> --app <coder-app-name>
+```
+
+6. Edit the `fly.toml` file and update as per the example below:
 
 ```toml
 app = "<app-name>" # Replace <app-name> with the name of your app
@@ -51,9 +57,8 @@ primary_region = "ams"  # See a list of regions here: https://fly.io/docs/refere
    image = "ghcr.io/coder/coder:latest"
 
 [env]
-  CODER_ACCESS_URL = "https://<app-name>.fly.dev" # Replace <app-name> with the name of your app
+  CODER_ACCESS_URL = "https://<coder-app-name>.fly.dev" # Replace <app-name> with the name of your app
   CODER_HTTP_ADDRESS = "0.0.0.0:3000"
-  CODER_PG_CONNECTION_URL = "DATABASE_URL" # Replace DATABASE_URL with the connection string you copied from step 4
   #CODER_VERBOSE = "true" # Uncomment this if you want to see more logs
   CODER_TELEMETRY_INSTALL_SOURCE = "fly.io"
 
@@ -76,18 +81,18 @@ primary_region = "ams"  # See a list of regions here: https://fly.io/docs/refere
 
 ```
 
-6. Deploy the app:
+7. Deploy the app:
 
 Run the following command to deploy the app from the directory where the `fly.toml` file is located:
 
 ```bash
-flyctl deploy
+flyctl deploy --app <coder-app-name>
 ```
 
-7. Scale the Coder app to 1GB of memory:
+8. Scale the Coder app to 1GB of memory:
 
 ```bash
-flyctl scale memory 1024 --app <app-name>
+flyctl scale memory 1024 --app <coder-app-name>
 ```
 
 8. Congratulations! You've deployed Coder on Fly.io!. Go to the URL of your app and create your first user!
