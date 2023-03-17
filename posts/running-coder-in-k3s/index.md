@@ -405,8 +405,8 @@ $ mkdir ~/apachehttp
 
 ```
 <VirtualHost *:443>
-	SSLEngine On
-	SSLProxyEngine on
+  SSLEngine On
+  SSLProxyEngine on
 
   SSLProxyVerify none
   SSLProxyCheckPeerCN off
@@ -424,14 +424,14 @@ $ mkdir ~/apachehttp
   RequestHeader set X-Forwarded-Proto https"
   RequestHeader set X-Forwarded-Port "443"
 
-	# Certificates
+  # Certificates
   SSLCertificateFile /ssl/fullchain.pem
   SSLCertificateKeyFile /ssl/privkey.pem
 
-	ServerName *.coder.mydomain.com
+  ServerName *.coder.mydomain.com
 
-	ProxyPreserveHost On
-	ProxyRequests off
+  ProxyPreserveHost On
+  ProxyRequests off
   ProxyPass / http://k3sserver:8080/ upgrade=any
   ProxyPassReverse / http://k3sserver:8080/
 
@@ -441,15 +441,15 @@ $ mkdir ~/apachehttp
   RewriteCond %{HTTP:Upgrade} websocket [NC]
   RewriteRule /(.*) ws://k3sserver:8080/$1 [P,L]
 
-	# Custom log file for SSL
+  # Custom log file for SSL
   ErrorLog /var/log/apachehttp/coder/error.log
   CustomLog /var/log/apachehttp/coder/access.log combined
 </VirtualHost>
 
 <VirtualHost *:80>
-	ServerName *.coder.mydomain.com
-	RewriteEngine On
-	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+  ServerName *.coder.mydomain.com
+  RewriteEngine On
+  RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 </VirtualHost>
 ```
 
