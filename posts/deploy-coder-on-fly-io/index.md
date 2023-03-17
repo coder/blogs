@@ -132,7 +132,7 @@ coder templates push fly-docker-image --variable fly_api_token=$(flyctl auth tok
 
 ![template](./static/template-1.png)
 
-> instead of setting variable `fly_api_token` you can also set a fly.io secret with the name `FLY_API_TOKEN`
+> If coder is deployed as a fly.io app, instead of setting variable `fly_api_token` you can also set a fly.io secret with the name `FLY_API_TOKEN`
 >
 > ```bash
 > flyctl secrets set FLY_API_TOKEN=$(flyctl auth token)
@@ -149,7 +149,7 @@ coder templates push fly-docker-image --variable fly_api_token=$(flyctl auth tok
 
 ## Update Coder
 
-To update the Coder version, run `flyctl deploy --aap <app-name>` again and it will pull the latest version of Coder.
+To update the Coder version, run `flyctl deploy --aap <coder-app-name>` again and it will pull the latest version of Coder.
 
 ## Next Steps
 
