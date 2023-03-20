@@ -10,20 +10,28 @@ This post aims at describing the deployment of [Coder](https://coder.com/) on a 
 
 [Coder](https://coder.com/) is an online development environment platform that offers the possibility to code directly from a web browser. All the compilation toolchain is then deported on the server. [Coder](https://coder.com/) provides a ready-to-use remote development environment and reduces the installation and configuration issues that could arise from the heterogeneity of developer's workstation architectures and software used.
 
-This kind of solution has gained popularity in recent years, with several alternative solutions such as: [Gitpod](https://www.gitpod.io/), [EclipseCHE](https://www.eclipse.org/che/), [JupyterHub](https://jupyter.org/hub), [GitHub Codespaces](https://github.com/features/codespaces), or [Codeanywhere](https://codeanywhere.com/). These alternative solutions have a lot in common, but also some distinguishing features that can make them attractive.
+This kind of solution has gained popularity in recent years, with several alternative solutions such as: 
+
+* [Gitpod](https://www.gitpod.io/)
+* [EclipseCHE](https://www.eclipse.org/che/)
+* [JupyterHub](https://jupyter.org/hub)
+* [GitHub Codespaces](https://github.com/features/codespaces)
+* [Codeanywhere](https://codeanywhere.com/)
+
+These alternative solutions have a lot in common, but also some distinguishing features that can make them attractive.
 
 I am interested in deploying an online development platform within a higher education governmental institution. This platform is meant to be used by researchers and students. Several features are mandatory, such as self-hosting, open source, great community, ease of installation, and the ability to handle multiple programming languages.
 
 A first experimentation was based on [Gitpod](https://www.gitpod.io/). Unfortunately, Gitpod no longer supports self-hosting, as explained on the [Gitpod blog](https://www.gitpod.io/blog/introducing-gitpod-dedicated). Furthermore, setting up [Gitpod](https://www.gitpod.io/) was not easy, and I can understand the choice made by [Gitpod](https://www.gitpod.io/) developers, as explained on the blog post, to drop support for self-hosting since there were many issues arising from the heterogeneity of Kubernetes distributions. A second solution was [JupyterHub](https://jupyter.org/hub), which was fairly easy to install but limited to the Python language. In a third experimentation, I therefore turned to [Coder](https://coder.com/). In this post I will explain how I deployed it on a [K3s](https://k3s.io/) cluster.
 
-From a technical point of view, [Coder](https://coder.com/) provisions remote development environments via Terraform to supply users with Workspaces. For example, via Terraform, you can specify that you want to use a specific Docker image that contains the necessary compilation toolchain to build Java programs and that you want to install VIM as a code editor. Resources will also be specified, such as the memory or storage capacity of Workspaces. As for [K3s](https://k3s.io/), it is a lightweight Kubernetes distribution designed for production environments with limited resources, such as embedded systems. I appreciate [K3s](https://k3s.io/) because it is designed to be easy to install.
+[Coder](https://coder.com/) solution matches all features I need, because it is [self-hosted](https://coder.com/docs/v2/latest/install), [open source](https://github.com/coder) and has a great[Discord community](https://discord.com/invite/coder). From a technical point of view, [Coder](https://coder.com/) provisions remote development environments via Terraform to supply users with Workspaces. For example, via Terraform, you can specify that you want to use a specific Docker image that contains the necessary compilation toolchain to build Java programs and that you want to install VIM as a code editor. Resources will also be specified, such as the memory or storage capacity of Workspaces. As for [K3s](https://k3s.io/), it is a lightweight Kubernetes distribution designed for production environments with limited resources, such as embedded systems. I appreciate [K3s](https://k3s.io/) because it is designed to be easy to install.
 
 The deployment of [Coder](https://coder.com/) on a [K3s](https://k3s.io/) cluster is broken down into the following steps:
 
 * [Setup](#setup)
 * [Install k3s](#install-k3s)
 * [Deploy Coder](#deploy-coder)
-* [Deploy Reverse Proxy](#deploy-reverse-proxy)
+* [Deploy reverse-proxy](#deploy-reverse-proxy)
     * [NGINX](#nginx)
     * [Apache HTTP](#apache-http)
 * [Run and enjoy](#test-coder)
@@ -41,12 +49,14 @@ Before starting the [Coder](https://coder.com/) install process, you must have:
     * All machines are on the same vlan.
     * All machines have ports 22 (SSH), 80 (HTTP), 443 (HTTPS) and 6443 (Kubernetes) exposed.
   * A domain (coder.mydomain.com), a subdomain (*.coder.mydomain.com) and a configured DNS to redirect to `k3sserver`.
-  * A reverse Proxy (Apache HTTP or NGINX) which will be hosted outside of the Kubernetes cluster.
-  * A [Docker](https://www.docker.com/) installation on `k3sserver` to deploy the Reverse Proxy.
+  * A reverse-proxy (Apache HTTP or NGINX) which will be hosted outside of the Kubernetes cluster.
+  * A [Docker](https://www.docker.com/) installation on `k3sserver` to deploy the reverse-proxy.
 
 * Locally
   * [kubectl](https://kubernetes.io/docs/reference/kubectl/)
   * [HELM](https://helm.sh/)
+
+> **Note**: in the following infrastructure, I will present a configuration where TLS certificates will be managed by a reverse-proxy outside of Kubernetes. It is a **restriction** of my higher education governmental institution and I would like to reproduce the same setup and to show you this specific use case. But, I agree in many cases, the ingress could/should also be secured via [cert-manager](https://cert-manager.io/) or by passing TLS certificates in directly. It would be better to stay within the K8s infrastructure.
 
 ## Install [K3s](https://k3s.io/)
 
@@ -250,11 +260,11 @@ coder-59c6bc9c77-6f2wj   1/1     Running   0          9m47s
 
 > These instructions are based on the [Coder](https://coder.com/) website: https://coder.com/docs/v2/latest/install/kubernetes.
 
-## Deploy Reverse Proxy
+## Deploy reverse-proxy
 
-As mentioned in the introduction, a Reverse Proxy will be deployed outside of your Kubernetes cluster.
+As mentioned in the setup section, a reverse-proxy will be deployed outside of your Kubernetes cluster.
 
-The Reverse Proxy will also be in charge of managing SSL/TLS certificates. Let's describe how to generate certificates with LetsEncrypt.
+The reverse-proxy will also be in charge of managing SSL/TLS certificates. Let's describe how to generate certificates with LetsEncrypt.
 
 * Connect to the server node (`k3sserver`) and install Certbot:
 
@@ -316,7 +326,7 @@ We suppose [Docker](https://www.docker.com/) is installed on the server node (`k
 $ docker network create reverseproxynetwork
 ```
 
-Two Reverse Proxy solutions will be presented: [NGINX](https://www.nginx.com/) and [Apache HTTP](https://httpd.apache.org/). Choose only ONE at your convenience.
+Two reverse-proxy solutions will be presented: [NGINX](https://www.nginx.com/) and [Apache HTTP](https://httpd.apache.org/). Choose only ONE at your convenience.
 
 ### NGINX
 
