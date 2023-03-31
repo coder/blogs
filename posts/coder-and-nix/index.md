@@ -1,33 +1,14 @@
----
-outline: coder/0_nix_and_coder_outline.md
-reference: [
-  https://coder.com/blog/it-s-works-on-my-machine-explained,
-  https://coder.com/blog/managing-templates-in-coder,
-  https://coder.com/blog/personalizing-coder,
-  https://coder.com/blog/not-a-container,
-  https://coder.com/blog/coder-101-how-coder-works-at-a-higher-level,
-  https://github.com/coder/code-server/issues/258,
-  https://github.com/coder/coder/blob/main/flake.nix,
-  https://coder.com/blog/how-our-development-team-shares-one-giant-bare-metal-machine
-]
-notes:
-  - Focus on what each is -- Coder, Nix, Docker
-  - Focus on using Nix with Docker
-  - Mention Coder uses Nix for development
-  - Conclude with Coder is flexible, etc
----
-
 # Coder and Nix
 
 ## What is Coder
 
-[Coder](https://coder.com) is an Open Source remote development platform that allows you to share an environment with your entire development team. Coder [eliminates many common issues](https://coder.com/why) with remote development by creating a shared environment for all your resources that is designed to streamline the development process for any type of development -- from DevOps and IT to Data Scientists. Additionally Coder is available through many of the popular cloud providers, allowing you to develop from anywhere using just about any machine. 
+[Coder](https://coder.com) is an Open Source remote development platform that allows you to share an environment with your entire development team. Coder [eliminates many common issues](https://coder.com/why) with remote development by creating a shared environment for all your resources that is designed to streamline the development process for any type of development -- from DevOps and IT to Data Scientists. Additionally Coder is available through many of the popular cloud providers, allowing you to develop from anywhere using many different operating systems. 
 
 Since Coder is designed to be a shared development platform for your team, it makes sense that Coder would work well with a tool like Nix. In fact, the team at [Coder uses Nix](https://coder.com/docs/v2/latest/CONTRIBUTING#requirements) for our development process 
 
 ## What is Nix?
 
-Nix is a tool and operating system that treats every environment, including the os, as a list of dependencies. The Nix toolchain was created with the understanding that all software depends on other software to function. Because of this, Nix can let you set up your environment as easily as declaring a list of dependencies. And according to [nix.dev](https://nix.dev/) this ecosystem aims to achieve reproducible development environments, easy transfer of software environments between computers, and atomic upgrades and rollbacks. 
+Nix is a tool and operating system that treats every environment, including the os, as a list of dependencies. The Nix toolchain was created with the understanding that all software depends on other software to function. Because of this, Nix can let you set up your environment by declaring a list of dependencies. And according to [nix.dev](https://nix.dev/) this ecosystem aims to achieve reproducible development environments, seamless transfer of software environments between computers, and atomic upgrades and rollbacks. 
 
 You can get started with the Nix package manager immediately on any OS platform. Instructions for installing Nix on your system are located at the [nix installation guide](https://nixos.org/download.html). 
 
@@ -35,7 +16,7 @@ Nix is a very robust, and at times complicated, platform. This article will atte
 
 ### Benefits to using Nix
 
-At its core, Nix aims to provide packges that are reproducible by isolating each package build. This means that the dependencies in each pacakge exist in a separate environment from other packages. Nix is somewhat unique in that you may use the package management features of Nix without the full OS, allowing you to install Nix packages on just about any base system. Best of all, Nix can allow you to delcare a default configuration for your system which can be transferred to any new machine using the Nix flake file. You can search for Nix packages at [search.nixos.org](https://search.nixos.org/).
+At its core, Nix aims to provide packges that are reproducible by isolating each package build. This means that the dependencies in each pacakge exist in a separate environment from other packages. Nix is somewhat unique in that you may use the package management features of Nix without the full OS. Best of all, Nix can allow you to delcare a default configuration for your system which can be transferred to any new machine using a shared configuration file. You can search for Nix packages at [search.nixos.org](https://search.nixos.org/).
 
 The reproducibility of Nix environments allows development teams allowing developers to share configuration with teams [and contributors](https://coder.com/docs/v2/latest/CONTRIBUTING#requirements). Declarative with Nix environments ensures that the environment will contain the same resources and tools for each developer on your team. 
 
@@ -43,11 +24,11 @@ Developers working with Nix won't have to worry about their builds failing due t
 
 ## What About Docker?
 
-There are many benefits to using Docker to manage your development environment. You can prepare a Docker image with all the tooling needed to work on your app and have it ready to go with a simple `docker run` command. This environment ensures that all developers on your team are using the same version of the languages and resources that you need to maintain your application. 
+There are many benefits to using Docker to manage your development environment. You can prepare a Docker image with all the tooling needed to work on your app and have it ready to go with a basic `docker run` command. This environment ensures that all developers on your team are using the same version of the languages and resources that you need to maintain your application. 
 
 Docker also helps to abstract away the gritty details of using a particular service or language. With Docker you wont need to manage each process independently - it is all included in the docker image. Docker is great for deploying applications, but it gets a bit complicated when using Docker to develop them. And using the same environment to develop and deploy your application can get very complicated very quickly. Each additional layer of complexity added to the development environment is another thing that can break without warning. 
 
-However mixing this infrastructure with the development environment can sometimes limit the  developers ability to use the tools they are comfortable with. Developers must give up their preferred shell configuration and tooling in favor of a base set of tools and settings determined by the infrastructure. Of course many developers can pick up new tooling without much difficulty, but having a top-down approach to the development environment means not only are these tools fixed for the project, they may eventually break if the resources in the dockerfile become outdated. 
+However mixing this infrastructure with the development environment can sometimes limit the  developers ability to use the tools they are comfortable with. Developers must give up their preferred shell configuration and tooling in favor of a base set of tools and settings determined by the infrastructure. Many developers can pick up new tooling without much difficulty, but having a top-down approach to the development environment means not only are these tools fixed for the project, they may eventually break if the resources in the dockerfile become outdated. 
 
 Additionally, Docker requires that your team understands Docker and how it works to some degree. This is particularly important if something does happen to break within Docker -- your development team has to know how to troubleshoot the issue before they can resolve it. This is particularly difficult since Docker works differently between platforms. An issue one team member may have on Windows can be vastly different from issues MacOS based developers may face. There is a potential for a huge amount of lost productivity when these issues come up, both in time and brainpower spent trying to fix the issue. And when its only your setup that doesn't work with Docker you find yourself facing the [it works on my machine](https://coder.com/blog/it-s-works-on-my-machine-explained) problem. 
 
@@ -109,7 +90,7 @@ Now running the `nix-shell` command will create an environment containing the sh
 
 ## Using Nix with Coder
 
-Now that you have your NodeJS environment and custom toolchain setup in `shell.nix`, lets add Coder to your environment. Coder is available as a nix package and can be added to your config as easily as adding the items in your tool chain. Just modify your `shell.nix` file to include the Coder package
+Now that you have your NodeJS environment and custom toolchain setup in `shell.nix`, lets add Coder to your environment. Coder is available as a nix package and can be added to your config as the same way you have added your custom software in your tool chain. You can do so by modifying your `shell.nix` file to include the Coder package, like in the example code below:
 
 ```nix
 # shell.nix
@@ -131,6 +112,6 @@ Now when you run `nix-shell` you will have your NodeJS tooling, custom zsh confi
 
 ## Conclusion
 
-In this article you learned a bit about Coder and Nix, and how you can combine the two platforms to create a robust remote development environment that is easily reproducible and can be extended to incorporate your own tools. Nix and Coder both aim to provide developers with a worry-free environment, allowing your team to focus on work and not troubleshooting. 
+In this article you learned a bit about Coder and Nix, and how you can combine the two platforms to create a robust remote development environment that is reproducible and can be extended to incorporate your own tools. Nix and Coder both aim to provide developers with a worry-free environment, allowing your team to focus on work and not troubleshooting. 
 
 Get started with Coder now by visiting [https://coder.com/](https://coder.com/).
