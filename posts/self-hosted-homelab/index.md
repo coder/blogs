@@ -44,9 +44,7 @@ I installed Docker before Coder. You'll see why later.
 
 Instead of [Docker Desktop](https://www.docker.com/products/docker-desktop/), I installed [Docker Engine for Debian](https://docs.docker.com/engine/install/debian/) because Marvin is headless. I'm not missing out on Docker Desktop's admin features since Coder has its own capable browser-based UI and it does a lot of Docker management for me.
 
-Next was Coder. Its [install script](https://coder.com/docs/v2/latest/install/install.sh) does the right thing. In Marvin’s case it detected Debian to install a `.deb` package. It also handles other Linux distros.
-
-The installer also recognized Docker, including adding the `coder` user to the `docker` group.
+Next was Coder. Its [install script](https://coder.com/docs/v2/latest/install/install.sh) does the right thing. In Marvin’s case it detected Debian to install a `.deb` package. It also recognized Docker so it added the `coder` user to the `docker` group.
 
 ```bash
 marc@marvin:~$ sudo curl -fsSL https://coder.com/install.sh | sh
@@ -65,7 +63,7 @@ I wanted to dedicate Marvin to hosting my projects, so I followed the installer'
 marc@marvin:~$ sudo systemctl enable --now coder
 ```
 
-Accessing Coder is straightforward. I can access the web interface with Marvin's local IP address. And by default, Coder also set up a publicly accessible, encrypted tunnel based on [Tailscale](https://tailscale.com). I got the [tunnel’s access URL](https://coder.com/docs/v2/latest/admin/configure) (and checked that Coder is up and running):
+Accessing Coder is straightforward. I can access the web interface with Marvin's local IP address. And by default, Coder set up a publicly accessible, encrypted tunnel based on [Tailscale](https://tailscale.com). I got the [tunnel’s access URL](https://coder.com/docs/v2/latest/admin/configure) (and checked that Coder is up and running):
 
 ```bash
 marc@marvin:~$ sudo journalctl -u coder.service -b
@@ -159,7 +157,7 @@ I filled in details about my first workspace then started it:
 
 Marvin took a couple of minutes while Coder prepared the workspace, including downloading the Docker image.
 
-That got me my first workspace, running and ready to use!
+That got me my first workspace, running and ready to use! I could access it in a few ways, including [code-server](https://coder.com/docs/code-server/latest), which lets me use VS Code in the browser.
 
 ![Workspace running](./static/workspace-run.png)
 
@@ -170,8 +168,6 @@ marc@marvin:~/docker$ docker ps
 CONTAINER ID   IMAGE                                        COMMAND                  CREATED         STATUS         PORTS     NAMES
 9fed4695ac59   coder-4868739b-5bc8-421c-123f-59fd8d2581ab   "sh -c '#!/usr/bin/e…"   7 minutes ago   Up 7 minutes             coder-marc-myfirstworkspace
 ```
-
-From my browser's Coder tab I could access my workspace in a few ways, including [code-server](https://coder.com/docs/code-server/latest), which lets me use VS Code in the browser.
 
 ## Where to go from here
 
