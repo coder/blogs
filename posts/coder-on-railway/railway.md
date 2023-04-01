@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://coder.com">
-    <img src="https://raw.githubusercontent.com/coder/coder/main/docs/images/banner-white.png" style="width: 650px">
+    <img style="width: 650px" src="https://raw.githubusercontent.com/coder/coder/main/docs/images/banner-white.png">
   </a>
 </div>
 
@@ -15,11 +15,15 @@
 
 ### 1. Fill the environment variables
 
-The current version of the template allows you to set an optional environment variable `CODER_WILDCARD_ACCESS_URL` which will allow you to forward ports from your workspace to a custom wildcard subdomain of the URL you provide. This is useful if you want to access a service running in your workspace from a browser. For example, if you set `CODER_WILDCARD_ACCESS_URL` to `*.coder.example.com`, you can access a service running on port 8080 in your workspace by visiting `8080--<username>--<workspace-name>.coder.example.com`.
+The current version of the template allows you to set an optional environment variable `CODER_WILDCARD_ACCESS_URL` which will allow you to forward ports from your workspace to a custom wildcard subdomain of the URL you provide. This is useful if you want to access a service running in your workspace from a browser. For example, if you set `CODER_WILDCARD_ACCESS_URL` to `*.coder.example.com`, you can access a service running on port 8080 in your workspace by visiting `8080--<user-name>--<workspace-name>.coder.example.com` in your browser.
+
+> Note: This is an optional step. If you do not set this variable, you will not be able to access services running in your workspace from a browser. For more information.
+
+> You can later add more environment variables by going to Dashboard &gt; Coder (Service) &gt; Settings &gt; Environment Variables. See [this](https://coder.com/docs/v2/latest/cli/server) for more information on environment variables that can be set.
 
 ### 2. Attach a custom domain
 
-Your Coder deployment will always be accessible at `https://<app-name>.up.railway.app`. If you want to use a custom domain, you can do so by going to Dashboard > Coder (Service) > Settings > Domains and adding your domain and optionally a wildcard subdomain if you specified `CODER_WILDCARD_ACCESS_URL` in the previous step.
+Your Coder deployment will always be accessible at `https://<app-name>.up.railway.app`. If you want to use a custom domain, you can do so by going to Dashboard &gt; Coder (Service) &gt; Settings &gt; Domains and adding your domain and optionally a wildcard subdomain if you specified `CODER_WILDCARD_ACCESS_URL` in the previous step.
 
 ### 3. Create your first user
 
