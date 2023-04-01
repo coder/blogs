@@ -25,19 +25,19 @@ Your Coder deployment will always be accessible at `https://<app-name>.up.railwa
 
 Create your first user by going to `https://<app-name>.up.railway.app` or your custom domain.
 
-![Welcome to Coder](./static/coder_setup.png)
+![Welcome to Coder](https://raw.githubusercontent.com/coder/blogs/coder-on-railway/posts/coder-on-railway/static/coder_setup.png)
 
 ### 3. Create your first template
 
 [**Templates**](https://coder.com/docs/v2/latest/templates): Templates are written in Terraform and describe the infrastructure for workspaces. Coder provides a set of starter templates to help you get started.
 
 Choose a template to set up your first workspace. You can also [create your own templates](https://coder.com/docs/v2/latest/templates) to define your custom infrastructure with your preferred cloud provider.
-![starter templates](./static/starter_templates_welcome.png)
+![starter templates](https://raw.githubusercontent.com/coder/blogs/coder-on-railway/posts/coder-on-railway/static/starter_templates_welcome.png)
 
 ### 4. Create your first workspace
 
 [**Workspaces**](https://coder.com/docs/v2/latest/workspaces): Workspaces contain the IDEs, dependencies, and configuration information needed for software development. You can create workspaces from templates. Here wea are showing the workspaces created from the Fly.io starter template in action.
-![fly.io workspace](./static/fly_workspace.png)
+![fly.io workspace](https://raw.githubusercontent.com/coder/blogs/coder-on-railway/posts/coder-on-railway/static/fly_workspace.png)
 
 ## Documentation
 

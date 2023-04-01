@@ -1,9 +1,12 @@
----
----
-
 # Deploy Coder on Railway.app
 
+Coder can be deployed on Railway.app in just a few clicks. This guide will walk you through the process of deploying Coder on Railway.app.
+
 ## Quickstart
+
+Start your deployment by clicking the button below. This will take you to Railway.app where you can sign up for a free account and deploy Coder.
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/cUQ8_P?referralCode=tfH8Uw)
 
 ### 1. Fill the environment variables
 
