@@ -1,7 +1,15 @@
----
----
+<div align="center">
+  <a href="https://coder.com">
+    <img src="https://raw.githubusercontent.com/coder/coder/main/docs/images/banner-white.png" style="width: 650px">
+  </a>
+</div>
 
-# Deploy Coder on Railway.app
+[Coder](https://coder.com) enables organizations to set up development environments in the cloud. Environments are defined with Terraform, connected through a secure high-speed Wireguard® tunnel, and are automatically shut down when not in use to save on costs. Coder gives engineering teams the flexibility to use the cloud for workloads that are most beneficial to them.
+
+- Define development environments in Terraform
+  - EC2 VMs, Kubernetes Pods, Docker Containers, etc.
+- Automatically shutdown idle resources to save on costs
+- Onboard developers in seconds instead of days
 
 ## Quickstart
 
