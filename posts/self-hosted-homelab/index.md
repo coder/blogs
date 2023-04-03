@@ -12,9 +12,9 @@ It was time to expand my homelab to handle my dev projects too.
 
 ## My problem: I wasn't getting anywhere
 
-I was spending too much time managing my personal and work projects instead of working on them. They're spread out over several environments and places. They run on OpenBSD, Windows, Linux, ARM, python3, browsers, and old-school command-line tools. The ODROIDs are almost literally chained to my homelab closet. I work from home, a co-work space, and sometimes other cities and countries.
+I was spending too much time managing my personal and work projects instead of working on them. They're spread out over several environments and places. They run on OpenBSD, Windows, Linux, ARM, python3, browsers, and old-school command-line tools. The ODROIDs are almost literally chained to my homelab closet. I work from home, a co-work space, and sometimes other time zones.
 
-The ideal solution would let me self-host my projects and let me work on them wherever and however I want. My daily driver, the machine I’m typing on right now, is an OpenBSD laptop. I sometimes use a Windows laptop. I run Linux on the ODROIDs. And I also wanted to use an iPad for the [ultimate sofa software development rig](https://coder.com/blog/a-guide-to-writing-code-on-an-ipad).
+The ideal solution would let me self-host my projects and work on them wherever and however I want. The machine I’m typing on right now is an OpenBSD laptop. I sometimes use a Windows laptop. I run Linux on the ODROIDs. And I also wanted to use an iPad for the [ultimate sofa software development rig](https://coder.com/blog/a-guide-to-writing-code-on-an-ipad).
 
 I put off fixing this because I expected that I'd have to hack and contort different tools into something that might eventually approach what I wanted. The cure seemed worse than the disease.
 
@@ -40,9 +40,9 @@ I installed Debian GNU/Linux and tucked Marvin into the homelab closet. Marvin�
 
 I ssh'd into Marvin to get started.
 
-I installed Docker before Coder. You'll see why later.
+First I installed Docker, before Coder. You'll see why later.
 
-Instead of [Docker Desktop](https://www.docker.com/products/docker-desktop/), I installed [Docker Engine for Debian](https://docs.docker.com/engine/install/debian/) because Marvin is headless. I'm not missing out on Docker Desktop's admin features since Coder has its own capable browser-based UI and it does a lot of Docker management for me.
+Instead of [Docker Desktop](https://www.docker.com/products/docker-desktop/), I installed [Docker Engine for Debian](https://docs.docker.com/engine/install/debian/) because Marvin is headless. I'm not missing out on Docker Desktop's GUI admin features since Coder does a lot of Docker management for me.
 
 Next was Coder. Its [install script](https://coder.com/docs/v2/latest/install/install.sh) does the right thing. In Marvin’s case it detected Debian to install a `.deb` package. It also recognized Docker so it added the `coder` user to the `docker` group.
 
@@ -63,7 +63,13 @@ I wanted to dedicate Marvin to hosting my projects, so I followed the installer'
 marc@marvin:~$ sudo systemctl enable --now coder
 ```
 
-Accessing Coder is straightforward. I can access the web interface with Marvin's local IP address. And by default, Coder set up a publicly accessible, encrypted tunnel based on [Tailscale](https://tailscale.com). I got the [tunnel’s access URL](https://coder.com/docs/v2/latest/admin/configure) (and checked that Coder is up and running):
+Accessing Coder is straightforward:
+
+- Command line tool
+- Web interface that I can access on my home network with Marvin's local IP address
+- Publicly accessible, encrypted tunnel based on [Tailscale](https://coder.com/docs/v2/latest/networking)
+
+I got the [tunnel’s access URL](https://coder.com/docs/v2/latest/admin/configure) (and checked that Coder is up and running):
 
 ```bash
 marc@marvin:~$ sudo journalctl -u coder.service -b
@@ -79,11 +85,11 @@ At this point I was able to use my laptop's browser to log in to Coder. I opened
 
 ![Setting up an account](./static/account-setup.png)
 
-Once logged in, I was ready to set up my first workspace. A Coder [workspace](https://coder.com/docs/v2/latest/workspaces) is the runnable environment that a developer, well, works in. Each developer has their own workspace or even workspaces.
+Once logged in, I was ready to set up my first workspace. A Coder [workspace](https://coder.com/docs/v2/latest/workspaces) is a runnable environment that a developer, well, works in. Each developer has their own workspace (or workspaces).
 
 Before I could start a workspace, I needed to create a [template](https://coder.com/docs/v2/latest/templates). A template is the collection of settings that Coder uses to create new workspaces. You only have to set up a template once to create as many workspaces as you need from it.
 
-A Coder template is a [Terraform](https://www.terraform.io/) file. That means that a Coder workspace can be whatever you can provision with Terraform. For big dev teams, that can be as sophisticated as a [Kubernetes](https://coder.com/docs/v2/latest/platforms/kubernetes) cluster. For Marvin, I'll just be using Docker. But I could just as easily create a template for something even simpler, like switch to a [Python virtual environment](https://docs.python.org/3/library/venv.html).
+A Coder template is a [Terraform](https://www.terraform.io/) file. That means that a Coder workspace can be whatever you can provision with Terraform. For big dev teams, that can be as sophisticated as a [Kubernetes](https://coder.com/docs/v2/latest/platforms/kubernetes) cluster. For Marvin, I'll just be using Docker. But I could just as easily create a template for something simpler, like a [Python virtual environment](https://docs.python.org/3/library/venv.html).
 
 Coder comes with a few templates out of the box. These templates include cloud computing like [Fly.io](https://coder.com/blog/remote-developer-environments-on-fly-io), Digital Ocean, Azure, Google Cloud, and AWS.
 
