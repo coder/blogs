@@ -28,7 +28,7 @@ It turns out that [Coder](https://coder.com) is a much easier solution. Coder so
 - Administering all these projects from a single place
 - Easy to install
 - Runs on modest hardware
-- Bonus: Open source!
+- Bonus: [Open source](https://github.com/coder)!
 
 ## First, the hardware
 
@@ -83,7 +83,7 @@ Once logged in, I was ready to set up my first workspace. A Coder [workspace](ht
 
 Before I could start a workspace, I needed to create a [template](https://coder.com/docs/v2/latest/templates). A template is the collection of settings that Coder uses to create new workspaces. You only have to set up a template once to create as many workspaces as you need from it.
 
-A Coder template is a [Terraform](https://www.terraform.io/) file. So a Coder workspace can be pretty much whatever you can provision with Terraform.
+A Coder template is a [Terraform](https://www.terraform.io/) file. That means that a Coder workspace can be whatever you can provision with Terraform. For big dev teams, that can be as sophisticated as a [Kubernetes](https://coder.com/docs/v2/latest/platforms/kubernetes) cluster. For Marvin, I'll just be using Docker. But I could just as easily create a template for something even simpler, like switch to a [Python virtual environment](https://docs.python.org/3/library/venv.html).
 
 Coder comes with a few templates out of the box. These templates include cloud computing like [Fly.io](https://coder.com/blog/remote-developer-environments-on-fly-io), Digital Ocean, Azure, Google Cloud, and AWS.
 
@@ -94,8 +94,6 @@ For my first workspace, I wanted to keep things simple with a template that woul
 In **Starter Templates** I selected [Develop in Docker](https://github.com/coder/coder/tree/main/examples/templates/docker).
 
 ![Selecting the Developer in Docker template](./static/template-develop-in-docker.png)
-
-This starter template uses the vanilla [Ubuntu container image](https://hub.docker.com/_/ubuntu/). For a real template, I'd edit its Terraform file to provision an environment for one of my projects.
 
 I went back to Marvin's shell to set up my template, starting with authentication:
 
@@ -109,7 +107,7 @@ Open the following in your browser:
 > Welcome to Coder, marc! You're authenticated.
 ```
 
-Then I followed the instructions to create a Docker template:
+Then I followed the instructions to create a Docker template. This template creates a directory named `docker`:
 
 ```bash
 marc@marvin:~$ coder templates init
@@ -119,6 +117,19 @@ Create your template by running:
    cd ./docker && coder templates create
 
 Examples provide a starting point and are expected to be edited!
+```
+
+For a real template, I would have edited the template's to provision an environment for one of my projects. I found the Terraform file, `main.tf`, in the `docker` directory:
+
+```bash
+marc@marvin:~$ ls docker
+main.tf  README.md
+```
+
+This starter template uses the vanilla [Ubuntu container image](https://hub.docker.com/_/ubuntu/) and that's fine for now. So I just followed Coder's instructions to create the template:
+
+```bash
+
 marc@marvin:~$ cd ./docker && coder template create
 > Upload "~/docker"? (yes/no) yes
 # Progress info...
@@ -155,7 +166,7 @@ I filled in details about my first workspace then started it:
 
 ![Start my first workspace](./static/workspace-start.png)
 
-Marvin took a couple of minutes while Coder prepared the workspace, including downloading the Docker image.
+Marvin took a couple of minutes as Coder prepared the workspace, including downloading the Docker image.
 
 That got me my first workspace, running and ready to use! I could access it in a few ways, including [code-server](https://coder.com/docs/code-server/latest), which lets me use VS Code in the browser.
 
