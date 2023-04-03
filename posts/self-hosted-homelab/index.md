@@ -6,7 +6,9 @@ author: Marc Paquette
 
 # Run Coder in a self-hosted homelab
 
-I outgrew my little homelab. I have a couple of [ODROID-HC2](https://ameridroid.com/products/odroid-hc2) devices in a closet. I use them to serve files and experiment with ARM assembly. They work great but they’re small, single board computers with equally small capacity.
+I outgrew my little homelab. I have a couple of [ODROID-HC2](https://ameridroid.com/products/odroid-hc2) devices in a closet. 
+
+I use them to serve files and experiment with ARM assembly. They work great but they’re small, single board computers with equally small capacity.
 
 It was time to expand my homelab to handle my dev projects too.
 
@@ -33,6 +35,8 @@ It turns out that [Coder](https://coder.com) is a much easier solution. Coder so
 ## First, the hardware
 
 My homelab would need more hardware. I found a used [Lenovo m92P Tiny](https://www.lenovo.com/il/en/desktops/thinkcentre/m-series-tiny/m92p) with 16 GB RAM and upgraded its spinning disk with a 1 TB SSD, all for $200. I named it "Marvin", a character from my favorite movie.
+
+[pic of Marvin and the rest of my homelab]
 
 I installed Debian GNU/Linux and tucked Marvin into the homelab closet. Marvin’s only connection to the outside world is an ethernet cable.
 
@@ -125,7 +129,7 @@ Create your template by running:
 Examples provide a starting point and are expected to be edited!
 ```
 
-For a real template, I would have edited the template's to provision an environment for one of my projects. I found the Terraform file, `main.tf`, in the `docker` directory:
+Normally I would have customized the template for one of my projects. I would have done that by editing the Terraform file, `main.tf`, in the `docker` directory:
 
 ```bash
 marc@marvin:~$ ls docker
