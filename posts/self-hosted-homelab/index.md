@@ -6,9 +6,7 @@ author: Marc Paquette
 
 # Run Coder in a self-hosted homelab
 
-I outgrew my little homelab. I have a couple of [ODROID-HC2](https://ameridroid.com/products/odroid-hc2) devices in a closet. 
-
-I use them to serve files and experiment with ARM assembly. They work great but they’re small, single board computers with equally small capacity.
+I outgrew my little homelab. I have a couple of [ODROID-HC2](https://ameridroid.com/products/odroid-hc2) devices in a closet. I use them to serve files and experiment with ARM assembly. They work great but they’re small, single board computers with matching small capacity.
 
 It was time to expand my homelab to handle my dev projects too.
 
@@ -16,18 +14,18 @@ It was time to expand my homelab to handle my dev projects too.
 
 I was spending too much time managing my personal and work projects instead of working on them. They're spread out over several environments and places. They run on OpenBSD, Windows, Linux, ARM, python3, browsers, and old-school command-line tools. The ODROIDs are almost literally chained to my homelab closet. I work from home, a co-work space, and sometimes other time zones.
 
-The ideal solution would let me self-host my projects and work on them wherever and however I want. The machine I’m typing on right now is an OpenBSD laptop. I sometimes use a Windows laptop. I run Linux on the ODROIDs. And I also wanted to use an iPad for the [ultimate sofa software development rig](https://coder.com/blog/a-guide-to-writing-code-on-an-ipad).
+The ideal solution would let me self-host my projects and work on them wherever and however I want. The machine I’m typing on right now is an OpenBSD laptop. I sometimes use a Windows laptop. And I also wanted to use an iPad for the [ultimate sofa software development rig](https://coder.com/blog/a-guide-to-writing-code-on-an-ipad).
 
 I put off fixing this because I expected that I'd have to hack and contort different tools into something that might eventually approach what I wanted. The cure seemed worse than the disease.
 
 ## I discovered Coder
 
-It turns out that [Coder](https://coder.com) is a much easier solution. Coder solves big problems for big enterprise dev teams. And I discovered that it can solve my problem too:
+It turns out that [Coder](https://coder.com/docs/v2) is a much easier solution. Coder solves big problems for big enterprise dev teams. And I discovered that it can solve my problem too:
 
 - An isolated workspace for each project, no matter the environment
 - Secure, remote access
-- Flexibility of handling cloud and on-prem projects
-- Administering all these projects from a single place
+- Flexibility of handling cloud and on-prem workspaces
+- Administering all these workspaces from a single place
 - Easy to install
 - Runs on modest hardware
 - Bonus: [Open source](https://github.com/coder)!
@@ -38,7 +36,7 @@ My homelab would need more hardware. I found a used [Lenovo m92P Tiny](https://w
 
 [pic of Marvin and the rest of my homelab]
 
-I installed Debian GNU/Linux and tucked Marvin into the homelab closet. Marvin’s only connection to the outside world is an ethernet cable.
+I installed [Debian](https://www.debian.org/intro/why_debian) and tucked Marvin into the homelab closet. Marvin’s only connection to the outside world is an ethernet cable.
 
 ## Install Docker then Coder
 
@@ -61,7 +59,7 @@ deb package has been installed.
 marc@marvin:~$
 ```
 
-I wanted to dedicate Marvin to hosting my projects, so I followed the installer's suggestion to run Coder [as a service](https://coder.com/docs/v2/latest/admin/configure#system-packages):
+I wanted to dedicate Marvin to hosting my projects, so I followed the installer's suggestion to run Coder [as a system service](https://coder.com/docs/v2/latest/admin/configure#system-packages):
 
 ```bash
 marc@marvin:~$ sudo systemctl enable --now coder
@@ -89,11 +87,13 @@ At this point I was able to use my laptop's browser to log in to Coder. I opened
 
 ![Setting up an account](./static/account-setup.png)
 
-Once logged in, I was ready to set up my first workspace. A Coder [workspace](https://coder.com/docs/v2/latest/workspaces) is a runnable environment that a developer, well, works in. Each developer has their own workspace (or workspaces).
+Once logged in, I was ready to set up my first workspace. A Coder [workspace](https://coder.com/docs/v2/latest/workspaces) is a runnable environment that a developer, well, develops in. Each developer has their own workspace (or workspaces).
+
+A developer can connect to a workspace from their [favorite IDE](https://coder.com/docs/v2/latest/ides) and other dev tools. That includes browser-based [VS Code](https://coder.com/docs/code-server/latest), [LSP](https://langserver.org/) servers, and local JetBrains or Emacs.
 
 Before I could start a workspace, I needed to create a [template](https://coder.com/docs/v2/latest/templates). A template is the collection of settings that Coder uses to create new workspaces. You only have to set up a template once to create as many workspaces as you need from it.
 
-A Coder template is a [Terraform](https://www.terraform.io/) file. That means that a Coder workspace can be whatever you can provision with Terraform. For big dev teams, that can be as sophisticated as a [Kubernetes](https://coder.com/docs/v2/latest/platforms/kubernetes) cluster. For Marvin, I'll just be using Docker. But I could just as easily create a template for something simpler, like a [Python virtual environment](https://docs.python.org/3/library/venv.html).
+A Coder template is a [Terraform](https://www.terraform.io/) file. That means that a Coder workspace can be whatever you can provision with Terraform. For big dev teams, that can be as sophisticated as pods in a [Kubernetes](https://coder.com/docs/v2/latest/platforms/kubernetes) cluster. For Marvin, I'd just be using Docker.
 
 Coder comes with a few templates out of the box. These templates include cloud computing like [Fly.io](https://coder.com/blog/remote-developer-environments-on-fly-io), Digital Ocean, Azure, Google Cloud, and AWS.
 
@@ -129,17 +129,16 @@ Create your template by running:
 Examples provide a starting point and are expected to be edited!
 ```
 
-Normally I would have customized the template for one of my projects. I would have done that by editing the Terraform file, `main.tf`, in the `docker` directory:
+This starter template uses the vanilla [Ubuntu container image](https://hub.docker.com/_/ubuntu/). Normally I would have customized the template for one of my projects. I would have done that by editing the Terraform file, `main.tf`, in the `docker` directory:
 
 ```bash
 marc@marvin:~$ ls docker
 main.tf  README.md
 ```
 
-This starter template uses the vanilla [Ubuntu container image](https://hub.docker.com/_/ubuntu/) and that's fine for now. So I just followed Coder's instructions to create the template:
+Next, I followed Coder's instructions to create the template:
 
 ```bash
-
 marc@marvin:~$ cd ./docker && coder template create
 > Upload "~/docker"? (yes/no) yes
 # Progress info...
@@ -176,7 +175,7 @@ I filled in details about my first workspace then started it:
 
 ![Start my first workspace](./static/workspace-start.png)
 
-Marvin took a couple of minutes as Coder prepared the workspace, including downloading the Docker image.
+Marvin took a couple of minutes as Coder prepared the workspace for the first time, including downloading the Docker image. After that starting the workspace would take only a few seconds.
 
 That got me my first workspace, running and ready to use! I could access it in a few ways, including [code-server](https://coder.com/docs/code-server/latest), which lets me use VS Code in the browser.
 
@@ -196,10 +195,10 @@ I can finally go places now that I can leave Marvin at home. Coder's public acce
 
 And I can finally work on my projects however I want.
 
-[ pic of Coder on an iPad ]
+![Ultimate sofa software development rig](./static/sofa-dev-rig.jpg)
 
 For the next step, I'll set up some of my projects as Coder workspaces on my homelab:
 
-* Put my static web site generator in a Docker image
-* Provision one of the ODROIDs as a Coder workspace
+* Static web site generator: Create a template with [persistence](https://coder.com/docs/v2/latest/templates/resource-persistence) and add [Pelican](https://getpelican.com/) to the template's Docker image.
+* ARM assembly: Create a template that provisions an ODROID.
 
