@@ -207,9 +207,7 @@ CONTAINER ID   IMAGE                                        COMMAND             
 
 ## Where to go from here
 
-I can finally go places while my homelab hosts my projects at home. Coder's public access URL for Marvin lets me work wherever I want.
-
-And I can finally work on my projects however I want.
+I can finally go places while my homelab hosts my projects. Coder's public access URL for Marvin lets me work wherever I want. And I can finally work on my projects however I want.
 
 ![Ultimate sofa software development rig](./static/sofa-dev-rig.jpg)
 
