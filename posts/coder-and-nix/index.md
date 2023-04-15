@@ -10,7 +10,7 @@ Since Coder is designed to be a shared development platform for your team, it ma
 
 Nix is a tool and operating system that treats every environment, including the os, as a list of dependencies. The Nix toolchain was created with the understanding that all software depends on other software to function. Because of this, Nix can let you set up your environment by declaring a list of dependencies. And according to [nix.dev](https://nix.dev/) this ecosystem aims to achieve reproducible development environments, seamless transfer of software environments between computers, and atomic upgrades and rollbacks. 
 
-You can get started with the Nix package manager immediately on any OS platform. Instructions for installing Nix on your system are located at the [nix installation guide](https://nixos.org/download.html). 
+You can get started with the Nix package manager immediately on any OS. Instructions for installing Nix on your system are located at the [nix installation guide](https://nixos.org/download.html). 
 
 Nix is a very robust, and at times complicated, platform. This article will attempt to describe how to use Nix with Coder at a high level. For additional information about Nix, please visit [https://nixos.org/](https://nixos.org/). 
 
