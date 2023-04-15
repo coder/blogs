@@ -2,7 +2,7 @@
 
 ## What is Coder
 
-[Coder](https://coder.com) is an Open Source remote development platform that allows you to share an environment with your entire development team. Coder [eliminates many common issues](https://coder.com/why) with remote development by creating a shared environment for all your resources that is designed to streamline the development process for any type of development -- from DevOps and IT to Data Scientists. Additionally Coder is available through many of the popular cloud providers, allowing you to develop from anywhere using many different operating systems. 
+[Coder](https://coder.com) is an open source remote development platform that allows you to share an environment with your entire development team. Coder [eliminates many common issues](https://coder.com/why) with remote development by creating a shared environment for all your resources that is designed to streamline the development process for any type of development -- from DevOps and IT to Data Scientists. Additionally Coder is available through many of the popular cloud providers, allowing you to develop from anywhere using many different operating systems. 
 
 Since Coder is designed to be a shared development platform for your team, it makes sense that Coder would work well with a tool like Nix. In fact, the team at [Coder uses Nix](https://coder.com/docs/v2/latest/CONTRIBUTING#requirements) for our development process 
 
