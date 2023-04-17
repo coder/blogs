@@ -16,7 +16,7 @@ Nix is a very robust, and at times complicated, platform. This article will atte
 
 ### Benefits to using Nix
 
-At its core, Nix aims to provide packges that are reproducible by isolating each package build. This means that the dependencies in each pacakge exist in a separate environment from other packages. Nix is somewhat unique in that you may use the package management features of Nix without the full OS. Best of all, Nix can allow you to delcare a default configuration for your system which can be transferred to any new machine using a shared configuration file. You can search for Nix packages at [search.nixos.org](https://search.nixos.org/).
+At its core, Nix aims to provide packages that are reproducible by isolating each package build. This means that the dependencies in each package exist in a separate environment from other packages. Nix is somewhat unique in that you may use the package management features of Nix without the full OS. Best of all, Nix can allow you to declare a default configuration for your system which can be transferred to any new machine using a shared configuration file. You can search for Nix packages at [search.nixos.org](https://search.nixos.org/).
 
 The reproducibility of Nix environments allows development teams allowing developers to share configuration with teams [and contributors](https://coder.com/docs/v2/latest/CONTRIBUTING#requirements). Declarative Nix environments ensures that the environment will contain the same resources and tools for each developer on your team. 
 
