@@ -22,6 +22,8 @@ The reproducibility of Nix environments allows development teams allowing develo
 
 Developers working with Nix won't have to worry about their builds failing due to outdated dependencies and can save time by avoiding resource-intensive workarounds. If you do happen to encounter an error with your Nix configuration you can roll back your Nix flake to the previous version to ensure your team can get work done right away. 
 
+![Docker workflow for development and production infrastructure](static/docker_infra_and_dev.png)
+
 ## What About Docker?
 
 There are many benefits to using Docker to manage your development environment. You can prepare a Docker image with all the tooling needed to work on your app and have it ready to go with a basic `docker run` command. This environment ensures that all developers on your team are using the same version of the languages and resources that you need to maintain your application. 
@@ -67,6 +69,8 @@ mkshell {
 
 To use this `shell.nix` file you can run `nix-shell` without any arguments. The `nix-shell` tool will look for this file by default. 
 
+{++ ![](diagram showing how nix shell is related to nix package and how resources are loaded) ++}
+
 ### Adding Your Tools to A Shared `shell.nix` Configuration
 
 The main benefit over using Docker for shared development environments is that Nix has the ability to extend this shared configuration with your own personal settings. For example, if you want to add your toolchain to a [nodejs.nix development environment](https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/web/nodejs/nodejs.nix), you can modify your `shell.nix` file with the following code. Note that the `nodejs.nix` file is imported as part of the `buildInputs` array.
@@ -90,6 +94,27 @@ Now running the `nix-shell` command will create an environment containing the sh
 
 ## Using Nix with Coder
 
+{++ 
+Adding template to Coder that includes Nix (Docker 
+template modified with nix-devcontainer image)
+++}
+
+At this point you're ready to start using Nix with Coder. There are a few different ways you can combine thee two tools, but one really effective method to get the most of both environments is to run Coder within a Nix environment by using Docker. 
+
+To get started you will need to create a new template in Coder. {++ Instructions with screenshots and code samples ++}
+
+Now that your Nix Docker template is set up in Coder, lets add your `shell.nix` configuration into the Coder workspace. {++ Instructions on how and where to add this configuration ++}
+
+After adding your template you can begin to use Coder inside your Nix environment. As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
+
+{++ 
+Describe how to clone a "todo" project (or something cooler) 
+and run it in Coder: https://github.com/nix-community/todomvc-nix 
+++} 
+
+First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
+
+{--
 Now that you have your NodeJS environment and custom toolchain setup in `shell.nix`, lets add Coder to your environment. Coder is available as a nix package and can be added to your config as the same way you have added your custom software in your tool chain. You can do so by modifying your `shell.nix` file to include the Coder package, like in the example code below:
 
 ```nix
@@ -109,6 +134,7 @@ mkshell {
 ```
 
 Now when you run `nix-shell` you will have your NodeJS tooling, custom zsh configuration, and Coder available. These tools will be available immediately so you can get to work right away. 
+--}
 
 ## Conclusion
 
