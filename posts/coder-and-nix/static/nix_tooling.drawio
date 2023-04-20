@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="rIAVPHAibQD52vb0EsZ-" name="Page-1">
-        <mxGraphModel dx="1292" dy="312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="0.75" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+        <mxGraphModel dx="646" dy="156" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="0.75" pageWidth="1100" pageHeight="850" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -10,17 +10,20 @@
                 <mxCell id="2" value="nix flakes" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="70" y="259" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="5">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="8" value="shell.nix" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document" vertex="1" parent="1">
+                    <mxGeometry x="560" y="240.27" width="70" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Text" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="260" y="310" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="353" y="259" width="120" height="171" as="geometry"/>
+                    <mxGeometry x="332" y="220" width="160" height="170" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="nix shell" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="610" y="259" width="120" height="60" as="geometry"/>
+                <mxCell id="12" value="nix shell" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="357" y="274" width="110.67" height="22.54" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="shell.nix" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.document" vertex="1" parent="1">
-                    <mxGeometry x="635" y="350" width="70" height="90" as="geometry"/>
+                <mxCell id="17" value="Nix Packages" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="332.6666666666667" y="220" width="159.33333333333331" height="39.23076923076923" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
