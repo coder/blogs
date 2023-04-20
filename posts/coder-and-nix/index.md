@@ -99,13 +99,19 @@ Adding template to Coder that includes Nix (Docker
 template modified with nix-devcontainer image)
 ++}
 
-At this point you're ready to start using Nix with Coder. There are a few different ways you can combine thee two tools, but one really effective method to get the most of both environments is to run Coder within a Nix environment by using Docker. 
+At this point you're ready to start using Nix with Coder. There are a few different ways you can combine thee two tools, but one really effective method to get the most of both environments is to run Coder within a Nix environment by using Docker. In this example we will be using modifying the Docker template in Coder to add the [nix-devcontainer image](https://github.com/xtruder/nix-devcontainer).
 
-To get started you will need to create a new template in Coder. {++ Instructions with screenshots and code samples ++}
+### NixOS Docker Template
+
+To get started you will need to copy the Docker template in Coder. We will add the `nix-devcontainer` image to the template {++ where, what line? what is it replacing? ++}{++ Any other instructions with screenshots and code samples... ++}
+
+After adding your template you can begin to use Coder inside your Nix environment.
+
+### Using Your `shell.nix` File
 
 Now that your Nix Docker template is set up in Coder, lets add your `shell.nix` configuration into the Coder workspace. {++ Instructions on how and where to add this configuration ++}
 
-After adding your template you can begin to use Coder inside your Nix environment. As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
+ As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
 
 {++ 
 Describe how to clone a "todo" project (or something cooler) 
