@@ -69,7 +69,7 @@ mkshell {
 
 To use this `shell.nix` file you can run `nix-shell` without any arguments. The `nix-shell` tool will look for this file by default. 
 
-{++ ![](diagram showing how nix shell is related to nix package and how resources are loaded) ++}
+![Nix Shell Resources](static/nix_tooling.png)
 
 ### Adding Your Tools to A Shared `shell.nix` Configuration
 
