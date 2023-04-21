@@ -168,7 +168,7 @@ git clone https://github.com/nix-community/todomvc-nix.git
 cd todomvc-nix
 ```
 
-The TodoMVC app has an [`.envrc`](https://github.com/nix-community/todomvc-nix/blob/master/.envrc) file in the root directory. This means that when you `cd` to this directory Nix knows to begin building the application based on the instructions from `.envrc`. 
+The TodoMVC app has an [`.envrc`](https://github.com/nix-community/todomvc-nix/blob/master/.envrc) file in the root directory. This means that when you `cd` to this directory Nix knows to begin building the application based on the instructions from `.envrc`. After a few moments of building you will be able to start using this application by {++ what / how? ++}
 
 ## Conclusion
 
