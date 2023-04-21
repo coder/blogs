@@ -103,7 +103,7 @@ At this point you're ready to start using Nix with Coder. There are a few differ
 
 ### NixOS Docker Template
 
-Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. We will add the `nix-devcontainer` image to the template
+Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. We will add the `nix-devcontainer` image to the `Dockerfile`
 
 ```dockerfile
 FROM ghcr.io/xtruder/nix-devcontainer:v1
