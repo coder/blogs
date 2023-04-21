@@ -94,22 +94,17 @@ Now running the `nix-shell` command will create an environment containing the sh
 
 ## Using Nix with Coder
 
-{++ 
-Adding template to Coder that includes Nix (Docker 
-template modified with nix-devcontainer image)
-++}
-
 At this point you're ready to start using Nix with Coder. There are a few different ways you can combine thee two tools, but one really effective method to get the most of both environments is to run Coder within a Nix environment by using Docker. In this example we will be using modifying the Docker template in Coder to add the [nix-devcontainer image](https://github.com/xtruder/nix-devcontainer).
 
 ### NixOS Docker Template
 
 Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. You copy this template using the Coder CLI by entering `coder templates init` into your terminal and selecting the `Develop in Docker` option. 
 
-![screenshot of selecting docker]()
+![screenshot of selecting docker](static/develop_in_docker.png)
 
 `Develop in Docker` will create a directory named `docker` in your current directory.
 
-![screenshot of extracing template]()
+![screenshot of extracing template](static/extract_docker_template.png)
 
 Next, navigate to the `docker` directory and edit the `Dockerfile` located at `build/Dockerfile`. We will edit this file to include the `nix-devcontainer` image and the `nix-shell` command mentioned earlier in the article. 
 
@@ -120,21 +115,7 @@ ARG USER=coder
 RUN nix-shell
 ```
 
-Finally, be sure to add your `shell.nix` file to the 
-
-After adding your template you can begin to use Coder inside your Nix environment.
-
-As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
-
-{++ 
-Describe how to clone a "todo" project (or something cooler) 
-and run it in Coder: https://github.com/nix-community/todomvc-nix 
-++} 
-
-First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
-
-{--
-Now that you have your NodeJS environment and custom toolchain setup in `shell.nix`, lets add Coder to your environment. Coder is available as a nix package and can be added to your config as the same way you have added your custom software in your tool chain. You can do so by modifying your `shell.nix` file to include the Coder package, like in the example code below:
+Finally, be sure to add your `shell.nix` file to the same directory as your `Dockerfile`, which is `build` in this example. Your `shell.nix` file should contain the following code
 
 ```nix
 # shell.nix
@@ -143,7 +124,6 @@ with (import <nixpkgs> {});
 mkshell {
   buildInputs = [
     (import ./nodejs.nix { inherit pkgs; })
-    coder
     fzf
     zsh
     zsh-autoenv
@@ -152,8 +132,15 @@ mkshell {
 }
 ```
 
-Now when you run `nix-shell` you will have your NodeJS tooling, custom zsh configuration, and Coder available. These tools will be available immediately so you can get to work right away. 
---}
+Your template is now set up and your `shell.nix` file has been copied to your template folder. Now you can upload your template to Coder using the `coder templates push` command in your terminal. 
+
+Once this template is uploaded you can create a new [workspace](https://coder.com/docs/v1/latest/workspaces) in Coder that is running in a full NixOS environment that contains all of the tools you defined in your `shell.nix` file. 
+
+### Using Other Applications
+
+As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
+
+First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
 
 ## Conclusion
 
