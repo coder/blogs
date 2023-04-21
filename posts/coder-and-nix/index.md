@@ -100,11 +100,32 @@ At this point you're ready to start using Nix with Coder. There are a few differ
 
 Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. You copy this template using the Coder CLI by entering `coder templates init` into your terminal and selecting the `Develop in Docker` option. 
 
-![screenshot of selecting docker](static/develop_in_docker.png)
+<!-- ![screenshot of selecting docker](static/develop_in_docker.png) -->
+
+```txt
+> coder templates init
+A template defines infrastructure as code to be provisioned for individual
+developer workspaces. Select an example to be copied to the active directory:
+
+Type to search
+
+  > Develop in Docker
+      Run workspaces on a Docker host using registry images
+      https://github.com/coder/coder/tree/main/examples/templates/docker
+```
 
 `Develop in Docker` will create a directory named `docker` in your current directory.
 
-![screenshot of extracing template](static/extract_docker_template.png)
+<!-- ![screenshot of extracing template](static/extract_docker_template.png) -->
+
+```txt
+Extracting  docker  to ./docker...
+Create your template by running:
+
+   cd ./docker && coder templates create
+
+Examples provide a starting point and are expected to be edited! 🎨
+```
 
 Next, navigate to the `docker` directory and edit the `Dockerfile` located at `build/Dockerfile`. We will edit this file to include the `nix-devcontainer` image and the `nix-shell` command mentioned earlier in the article. 
 
