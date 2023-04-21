@@ -153,14 +153,13 @@ mkshell {
 }
 ```
 
-Your template is now set up and your `shell.nix` file has been copied to your template folder. Now you can upload your template to Coder using the `coder templates push` command in your terminal. 
-
-Once this template is uploaded you can create a new [workspace](https://coder.com/docs/v1/latest/workspaces) in Coder that is running in a full NixOS environment that contains all of the tools you defined in your `shell.nix` file. 
+Your template is now set up and your `shell.nix` file has been copied to your template folder. Now you can upload your template to Coder using the `coder templates push` command in your terminal. Once this template is uploaded you can use this template to create a new [workspace](https://coder.com/docs/v1/latest/workspaces). This workspace will create a full NixOS environment that contains all of the tools you defined in your `shell.nix` file. 
 
 ### Using Other Applications
 
-{>> todo: looking for a different application to use <<}
+{>> todo: update the section below using [makes](https://github.com/fluidattacks/makes) <<}
 
+{--
 As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
 
 First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
@@ -170,7 +169,8 @@ git clone https://github.com/nix-community/todomvc-nix.git
 cd todomvc-nix
 ```
 
-The TodoMVC app has an [`.envrc`](https://github.com/nix-community/todomvc-nix/blob/master/.envrc) file in the root directory. This means that when you `cd` to this directory Nix knows to begin building the application based on the instructions from `.envrc`. After a few moments of building you will be able to start using this application by {++ what / how? ++}
+The TodoMVC app has an [`.envrc`](https://github.com/nix-community/todomvc-nix/blob/master/.envrc) file in the root directory. This means that when you `cd` to this directory Nix knows to begin building the application based on the instructions from `.envrc`. After a few moments of building you will be able to start using this application by {>> what / how? <<}
+--}
 
 ## Conclusion
 
