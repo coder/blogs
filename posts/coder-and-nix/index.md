@@ -159,6 +159,8 @@ Once this template is uploaded you can create a new [workspace](https://coder.co
 
 ### Using Other Applications
 
+{>> todo: looking for a different application to use <<}
+
 As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
 
 First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
