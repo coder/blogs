@@ -163,6 +163,13 @@ As a final step, lets say you have a Todo application you prefer to use alongsid
 
 First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
 
+```sh
+git clone https://github.com/nix-community/todomvc-nix.git
+cd todomvc-nix
+```
+
+The TodoMVC app has an [`.envrc`](https://github.com/nix-community/todomvc-nix/blob/master/.envrc) file in the root directory. This means that when you `cd` to this directory Nix knows to begin building the application based on the instructions from `.envrc`. 
+
 ## Conclusion
 
 In this article you learned a bit about Coder and Nix, and how you can combine the two platforms to create a robust remote development environment that is reproducible and can be extended to incorporate your own tools. Nix and Coder both aim to provide developers with a worry-free environment, allowing your team to focus on work and not troubleshooting. 
