@@ -96,9 +96,9 @@ Now running the `nix-shell` command will create an environment containing the sh
 
 At this point you're ready to start using Nix with Coder. There are a few different ways you can combine thee two tools, but one really effective method to get the most of both environments is to run Coder within a Nix environment by using Docker. In this example we will be using modifying the Docker template in Coder to add the [nix-devcontainer image](https://github.com/xtruder/nix-devcontainer).
 
-### NixOS Docker Template
+### NixOS, Docker, and `nix-shell`
 
-Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. You copy this template using the Coder CLI by entering `coder templates init` into your terminal and selecting the `Develop in Docker` option. 
+Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. You copy this template using the [Coder CLI](https://github.com/coder/coder) by entering `coder templates init` into your terminal and selecting the `Develop in Docker` option. 
 
 <!-- ![screenshot of selecting docker](static/develop_in_docker.png) -->
 
