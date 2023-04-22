@@ -98,7 +98,7 @@ At this point you're ready to start using Nix with Coder. There are a few differ
 
 ### NixOS, Docker, and `nix-env`
 
-Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/docs/v2/latest/templates). To get started you will need to copy the Docker template in Coder. You copy this template using the [Coder CLI](https://github.com/coder/coder) by entering `coder templates init` into your terminal and selecting the `Develop in Docker` option. 
+Much of the functionality of Coder comes from the flexibility of [template](https://coder.com/blog/managing-templates-in-coder). To get started you will need to copy the Docker template in Coder. You copy this template using the [Coder CLI](https://github.com/coder/coder) by entering `coder templates init` into your terminal and selecting the `Develop in Docker` option. 
 
 <!-- ![screenshot of selecting docker](static/develop_in_docker.png) -->
 
@@ -137,13 +137,15 @@ The `docker` directory that contains your newly copied template should look some
 │   └── main.tf
 ```
 
-Next, be sure to add the tools from your `shell.nix` file to the Docker image. To do this we will create a new file called `tools.nix`. This file will contain the following code:
+Next, be sure to add the tools from your `shell.nix` file to the Docker image. To do this we will create a new file called `tools.nix`. This file will be loaded using the `nix-env` to load your tools into the current shell by default, whereas `shell.nix` can be used for ad-hoc dependencies. 
+
+The contents of your `tools.nix` should contain the following contents:
 
 ```nix
 with import <nixpkgs>{}; [ fzf zsh zsh-autoenv zsh-powerlevel10k ]
 ```
 
-After saving the code to the `tools.nix` file, be sure to move this file to the same directory as your `Dockerfile`. In this example, this file will live in the `docker/build` directory
+After saving the above code to the `tools.nix` file, be sure to move this file to the same directory as your `Dockerfile`. In this example, this file will live in the `docker/build` directory
 
 ```txt
 ├── docker
@@ -163,18 +165,23 @@ ADD tools.nix /tools.nix
 RUN nix-env -if /tools.nix && echo "tools.nix installed"
 ```
 
-To use this new template with Coder, you have to add the template to your running Coder instance. 
+To use this new template with Coder, you have to add the template to your running Coder instance. You can do this from your terminal: 
 
 1. Navigte to the root of the template `docker` template directory
-2. Next, update the template by running `coder templates edit docker` in your terminal
-3. Now add the template to your Coder instance by running `coder templates push docker`
+2. Next, register your updated template with Coder by running `coder templates edit docker`
+3. Now upload the template to your Coder instance by running `coder templates push docker`
 
 Once this template is uploaded you can use this template to create a new [workspace](https://coder.com/docs/v1/latest/workspaces). This workspace will create a full NixOS environment that contains all of the tools you defined in your `tools.nix` file.
 
 ### Using Other Applications
 
-{>> todo: update the section below using ?? <<}
+Since Nix is an OS and a package manager you can use nix tools to install just about any software to your environment. Let's say you want to use [emanote](https://emanote.srid.ca/start) to take project notes and share those notes with your team. You can install `emanote` to your [nix profile](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-profile.html) by running the following command:
 
+```bash
+nix profile install github:srid/emanote 
+```
+
+Nix will ask you to confirm a few settings and then will install `emanote` in your environment. Point `emanote` to your notes folder and enter `emanote run --port 8080` to start a server to view your notes. 
 
 ## Conclusion
 
