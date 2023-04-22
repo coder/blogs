@@ -127,50 +127,54 @@ Create your template by running:
 Examples provide a starting point and are expected to be edited! 🎨
 ```
 
-Next, navigate to the `docker` directory and edit the `Dockerfile` located at `build/Dockerfile`. We will edit this file to include the `nix-devcontainer` image and the `nix-shell` command mentioned earlier in the article. 
+The `docker` directory that contains your newly copied template should look something like the diagram below:
+
+```txt
+├── docker
+│   ├── README.md
+│   ├── build
+│   │   ├── Dockerfile
+│   └── main.tf
+```
+
+Next, be sure to add the tools from your `shell.nix` file to the Docker image. To do this we will create a new file called `tools.nix`. This file will contain the following code:
+
+```nix
+with import <nixpkgs>{}; [ fzf zsh zsh-autoenv zsh-powerlevel10k ]
+```
+
+After saving the code to the `tools.nix` file, be sure to move this file to the same directory as your `Dockerfile`. In this example, this file will live in the `docker/build` directory
+
+```txt
+├── docker
+│   ├── README.md
+│   ├── build
+│   │   ├── Dockerfile
+│   │   └── tools.nix  # docker/build/tools.nix
+│   └── main.tf
+```
+
+Finally, we need to tell Docker how to load the NixOS container, create a user named `coder`, and install the tools from your `tools.nix` file into your local environment. To do this we will replace the default Dockerfile located at `docker/build/Dockerfile` with the new code below. Edit your Dockerfile to include on the following commands:
 
 ```dockerfile
 FROM ghcr.io/xtruder/nix-devcontainer:v1
 ARG USER=coder
-
-RUN nix-shell
+ADD tools.nix /tools.nix
+RUN nix-env -if /tools.nix && echo "tools.nix installed"
 ```
 
-Finally, be sure to add your `shell.nix` file to the same directory as your `Dockerfile`, which is `build` in this example. Your `shell.nix` file should contain the following code
+To use this new template with Coder, you have to add the template to your running Coder instance. 
 
-```nix
-# shell.nix
+1. Navigte to the root of the template `docker` template directory
+2. Next, update the template by running `coder templates edit docker` in your terminal
+3. Now add the template to your Coder instance by running `coder templates push docker`
 
-with (import <nixpkgs> {});
-mkshell {
-  buildInputs = [
-    (import ./nodejs.nix { inherit pkgs; })
-    fzf
-    zsh
-    zsh-autoenv
-    zsh-powerlevel10k
-  ];
-}
-```
-
-Your template is now set up and your `shell.nix` file has been copied to your template folder. Now you can upload your template to Coder using the `coder templates push` command in your terminal. Once this template is uploaded you can use this template to create a new [workspace](https://coder.com/docs/v1/latest/workspaces). This workspace will create a full NixOS environment that contains all of the tools you defined in your `shell.nix` file. 
+Once this template is uploaded you can use this template to create a new [workspace](https://coder.com/docs/v1/latest/workspaces). This workspace will create a full NixOS environment that contains all of the tools you defined in your `tools.nix` file.
 
 ### Using Other Applications
 
-{>> todo: update the section below using [makes](https://github.com/fluidattacks/makes) <<}
+{>> todo: update the section below using ?? <<}
 
-{--
-As a final step, lets say you have a Todo application you prefer to use alongside your code. You can clone this app and add it to Nix by doing the following: 
-
-First, find project you would like to clone. In this example we are using the [Nix Todo MVC](https://github.com/nix-community/todomvc-nix).
-
-```sh
-git clone https://github.com/nix-community/todomvc-nix.git
-cd todomvc-nix
-```
-
-The TodoMVC app has an [`.envrc`](https://github.com/nix-community/todomvc-nix/blob/master/.envrc) file in the root directory. This means that when you `cd` to this directory Nix knows to begin building the application based on the instructions from `.envrc`. After a few moments of building you will be able to start using this application by {>> what / how? <<}
---}
 
 ## Conclusion
 
