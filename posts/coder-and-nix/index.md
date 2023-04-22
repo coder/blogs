@@ -46,7 +46,6 @@ The nix-shell command resolves many of the uncertainties of the shared developme
 
 ```bash
 nix-shell -p fzf
-
 ```
 
 The above command will add `fzf` to your local nix store and temporarily modify your $PATH variable to include the command in your shell. `fzf` will be available immediately. 
@@ -142,7 +141,7 @@ Next, be sure to add the tools from your `shell.nix` file to the Docker image. T
 The contents of your `tools.nix` should contain the following contents:
 
 ```nix
-with import <nixpkgs>{}; [ fzf zsh zsh-autoenv zsh-powerlevel10k ]
+with import <nixpkgs>{}; [ fzf zsh zsh-autoenv zsh-powerlevel10k (import ./nodejs.nix { inherit pkgs; })]
 ```
 
 After saving the above code to the `tools.nix` file, be sure to move this file to the same directory as your `Dockerfile`. In this example, this file will live in the `docker/build` directory
