@@ -6,24 +6,25 @@ author: Marc Paquette
 
 # An ARM64 in every pocket
 
-Raspberry Pi rebooted an important segment of computing for educators and hobbyists. It makes digital technology interactive and fun to use, and at a reasonable cost for anyone who’s curious and creative.
+Raspberry Pi rebooted an important segment of computing for educators and hobbyists. It makes digital technology interactive and fun to use again, and at a reasonable cost for anyone who’s curious and creative.
 
 I’d like to start an education-related project based on ARM64 assembly language, and that’s a problem.
 
 ## My problem: Raspberry Pi is a physical device in short supply
 
-The pandemic and the resulting supply chain problems conspired to raise demand for the already-popular Raspberry Pi while lowering supply. Things are getting better but it’s still the case that finding a Raspberry Pi at a reasonable price.
+The pandemic and the resulting supply chain problems conspired to raise demand for the already-popular Raspberry Pi while lowering supply. Things are getting better but finding a Raspberry Pi at a reasonable price isn't easy.
 
-A smaller challenge is carrying a Raspberry Pi around. Setting it up at home is easy. But traveling with it is kind of a pain. The device really isn’t designed to set up and take down at a cafe, a hotel room, or an airplane seat without having to also its carry cables, a power adapter, and a display.
+A smaller challenge is carrying a Raspberry Pi around. Setting it up at home is easy. But traveling with it is kind of a pain. To set it up and take it down at a cafe or a hotel room means I have to carry an extra set of cables and a power adapter.
 
 ## Solution: An anywhere ARM64 dev environment
 
-What I’d like is an ultra-portable ARM64 device that I can use for development. By “portable” I mean that’s it’s available anywhere. The “ultra” part means that I don’t want to have to carry the physical device with me. And I’d like the full desktop experience because my project is all about interactivity.
+What I’d like is an ultra-portable ARM64 device that I can use for development. By “portable” I mean that’s it’s available anywhere. The “ultra” part means that I don’t want to have to carry the physical device and its accessories with me. And I’d like the full desktop experience because my project is all about interactivity.
 
-I chose to solve this with Coder and [AWS EC2 Graviton](https://aws.amazon.com/ec2/graviton/).  
+I chose to solve this with Coder and [AWS EC2 Graviton](https://aws.amazon.com/ec2/graviton/).
 
 - With Coder, I can create a workspace that spins up a container for ARM64 Ubuntu letting me work on my project wherever I want.
 - Graviton is the AWS ARM64-based EC2 service. I’ll run Ubuntu with a desktop environment and access it remotely with VNC.
+- Bonus points for remotely accessing my ultra-portable ARM64 device with just a browser-based VNC client.
 
 This will be an excellent solution while I wait to finally get my hands on a real Raspberry Pi.
 
@@ -37,7 +38,16 @@ But I can adapt an existing template pretty easily. To set up my ARM64 desktop w
 
 This template creates a workspace for an EC2 instance of Ubuntu on amd64. Because a Coder template is just a Terraform file, I can edit the template to meet my needs.
 
-## Edit files from a starter template
+Let me show you how I got the template ready in these steps:
+
+1. Set up AWS credentials.
+2. Start with a starter template.
+3. Use ARM64 instead of amd64.
+4. Install a desktop environment and VNC.
+
+As you can see, I'm doing this incrementally to make things easier. I can do this because Coder automatically versions its templates and lets me edit templates in-browser. If I make a mistake as I figure this out, I can always roll back.
+
+## Start with a starter template
 
 After logging into the Coder instance on my home lab, I select **Templates**, **Starter templates**, then **Develop in Linux on AWS EC2**.
 
@@ -66,25 +76,27 @@ Coder created a new directory, aws-linux with files ready to edit. I’ll rename
 
 ```bash
 marc@marvin:~$ mv aws-linux fabienne
-marc@marvin:~$ cd fabienne
-marc@marvin:~/fabienne$ vim main.tf
 ```
 
-The Terraform file is set up to use the EC2 AMI for Ubuntu on amd64. Here is how I changed [main.tf](http://main.tf) to use Ubuntu on ARM64 instead:
+## Add AWS credentials
 
-```
-main.tf snippet here
-```
-
-Notice that we can set up our template to give developers choices. In our case, we’ll let a developer choose between 3 different instances of AWS’s Graviton.
-
-## Get AWS credentials
-
-To start and stop my ultra-portable ARM64, Coder needs credentials. Let’s open a new browser tab and get some credentials from AWS.
+To start and stop my workspace, Coder needs my AWS credentials . Let’s open a new browser tab for AWs.
 
 In AWS IAM, I’ve created a new user, fabienne, and copy-pasted the AWS access policy that we saw earlier.
 
-With an access key and secret access key from AWS IAM, I’ll create AWS CLI configuration files, with a profile for fabienne.
+With an access key and secret access key from AWS IAM, I’ll create AWS CLI configuration files for the coder user on marvin, with a profile for fabienne.
+
+```bash
+marc@marvin:~$ mv aws-linux fabienne
+marc@marvin:~$ cd fabienne
+marc@marvin:~$ sudo -u coder aws configure --profile fabienne
+marc@marvin:~/fabienne$ vim main.tf
+```
+
+
+```bash
+marc@marvin:~$ sudo -u coder aws configure --profile fabienne
+```
 
 Let’s get this template ready to use. When I select Use template, Coder asks me for details about the new template. I fill out the **Name**, **Display name**, **Description**, then choose an emoji icon.
 
