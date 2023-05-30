@@ -28,7 +28,9 @@ For deployment instructions, see [Docs](https://coder.com/docs/v2/latest/admin/w
 [Envbox](https://github.com/coder/envbox) is an image developed and maintained by Coder that bundles the sysbox runtime. It works by starting an outer container that manages the various sysbox daemons and spawns an unprivileged inner container that acts as the user's workspace. The inner container is able to run system-level software similar to a regular virtual machine (e.g., systemd, dockerd, etc.). Envbox offers the following benefits over running sysbox directly on the nodes:
 
 - No custom runtime installation or management on your Kubernetes nodes.
-- No limit to the number of pods that run envbox.
+- No limit to the number of pods that run Envbox.
+
+Refer to the [docs](https://coder.com/docs/v2/latest/templates/docker-in-workspaces#envbox) for more information.
 
 ## Template Editor
 
