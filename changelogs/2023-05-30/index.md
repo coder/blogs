@@ -15,7 +15,7 @@ In the last few months, we have been working on exciting new features for Coder.
 
 Workspace proxies provide low-latency experiences for geo-distributed teams.
 
-Coder's networking makes the best effort to connect directly to a workspace. In situations where this is not possible, such as dashboard connections, workspace proxies can reduce the distance the network traffic needs to travel.
+Coder's networking makes the best effort to connect directly to a workspace. In situations where this is not possible, such as developing with a web IDE (e.g. Jupyter), workspace proxies reduce latency for developers.
 
 A workspace proxy is a relay connection a developer can use when connecting with their workspace over ssh, a workspace app, port forwarding, etc. Coder automatically selects the best proxy for the developer based on their location and the location of the workspace.
 
