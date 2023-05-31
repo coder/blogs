@@ -34,7 +34,7 @@ Refer to the [docs](https://coder.com/docs/v2/latest/templates/docker-in-workspa
 
 ## Template Editor
 
-The template editor is a new feature that allows you to edit and duplicate templates directly from the Coder dashboard. This feature is available to all users with the `template-admin` or `owner` role.
+Edit & duplicate templates directly from the Coder dashboard. This feature is available to all users with the `template-admin` or `owner` role.
 
 ![template editor](.\static\template-editor.gif)
 
