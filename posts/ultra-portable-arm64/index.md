@@ -12,7 +12,7 @@ I’d like to start an education-related project based on ARM64 assembly languag
 
 ## My problem: Raspberry Pi is in short supply
 
-The pandemic and the resulting supply chain problems conspired to raise demand for the already-popular Raspberry Pi while lowering supply. Things are getting better but finding a Raspberry Pi at a reasonable price isn't easy.
+The pandemic and its supply chain problems conspired to raise demand for the already-popular Raspberry Pi while lowering supply. Things are getting better but finding a Raspberry Pi at a reasonable price isn't easy.
 
 A smaller challenge is carrying a Raspberry Pi around. Setting it up at home is easy. But traveling with it is kind of a pain. To set it up and take it down at a cafe or a hotel room means I have to carry an extra set of cables and a power adapter.
 
@@ -115,7 +115,7 @@ With a valid template, I can go back to my browser to do the last steps.
 
 This template specifies a vanilla AWS EC2 instance running Ubuntu on amd64.
 
-To convert it to run an ARM64 instance of AWS EC2, I can edit the template's Terraform file in my browser. In my browser, I can see that the Fabienne template is ready to use.
+To convert it to run an ARM64 instance of AWS EC2, I can edit the template's Terraform file in my browser. I can see that the Fabienne template is ready to use.
 
 ![Fabienne ready to use](./static/aws-ec2-template-use.png)
 
@@ -125,16 +125,16 @@ I select **fabienne** then choose **Edit files** from the dropdown menu.
 
 The edits I make to this file:
 
-* Replace `amd64` with `arm64`.
+* Replace all occurrences of `amd64` with `arm64`.
 * Replace the EC2 instance types with, in my case, `m6g`, which is the type for AWS Graviton that I'll use.
 * In `data "coder_parameter" "instance_type"`, I shorten the list of options because there are fewer choices for ARM64 instances.
 * In `provider "aws"`, I point to the AWS configuration files in Marvin's `/home/coder` directory that I created earlier.
 
 To save my changes and see if I broke anything, I select **Build template**. I can keep an eye on the progress in **Build log**.
 
-![Build template for ARM64](./static/aws-ec2-template-build-template.png)
+![Build template for ARM64](./static/aws-ec2-template-build.png)
 
-With a successful switch to ARM64, I make this version of the template available to workspaces. Selecting **Publish version** prompts me to give this version a name. If something goes wrong, I can always keep using a working template version.
+With a successful switch to ARM64, I make this version of the template available to workspaces. Selecting **Publish version** prompts me to give this version a name. If something goes wrong, I can always revert to a working template version.
 
 ![Publish new version of template](./static/aws-ec2-template-publish-version.png)
 
@@ -172,15 +172,14 @@ My new workspace is running and VNC should be ready to connect to.
 
 ![Workspace running, VNC button](./static/aws-ec2-workspace-running-vnc.png)
 
+Out of curiosity, I open a new browser tab to see the instance running in AWS.
 
+![Instance running, VNC button](./static/aws-ec2-instance-running.png)
 
-
-1. Connect to VNC with web client.
-4. Develop!
+And if I wanted to make it even more convenient, I could change geographical location with just another edit to the template's Terraform file. This would reduce lag in the UI if I'm too far from the AWS data centre.
 
 ## Conclusion: Assemble!
 
-- Now I can assemble ARM64 code wherever I want.
+Now I can develop my ARM64 project, in its desktop environment, and from any browser. With Coder, my ultra-portable ARM64 environment is wherever I am.
 
-- For less lag in the UI as I change geographical location, I’ll reconfigure the tf parameter for the AWS instance’s geographical location
-
+![Using my ultra-portable ARM64](./static/ultra-portable-arm64-vnc.png)
