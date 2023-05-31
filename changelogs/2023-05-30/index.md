@@ -1,9 +1,7 @@
 ---
 title: What is New in May 2023
 date: May 30, 2023
-authors:
-  - { name: Muhammad Atif Ali, avatar: https://github.com/matifali.png }
-  - { name: Ben Potter, avatar: https://github.com/bpmct.png }
+author: Muhammad Atif Ali
 version: "0.23.7"
 ---
 
@@ -11,7 +9,7 @@ version: "0.23.7"
 
 In the last few months, we have been working on exciting new features for Coder. We are excited to share them with you today.
 
-## Workspace Proxies
+## Workspace Proxies (Experimental)
 
 Workspace proxies provide low-latency experiences for geo-distributed teams.
 
@@ -21,7 +19,7 @@ A workspace proxy is a relay connection a developer can use when connecting with
 
 For deployment instructions, see [Docs](https://coder.com/docs/v2/latest/admin/workspace-proxies).
 
-![workspace proxies](.\static\worksapce-proxies.png)
+![workspace proxies selection page](.\static\worksapce-proxies.png)
 
 ## Envbox
 
@@ -36,12 +34,13 @@ Refer to the [docs](https://coder.com/docs/v2/latest/templates/docker-in-workspa
 
 Edit & duplicate templates directly from the Coder dashboard. This feature is available to all users with the `template-admin` or `owner` role.
 
-![template editor](.\static\template-editor.gif)
+![template editor screenshot](.\static\template-editor.gif)
 
 ## Fly.io Starter Template
 
 We have added a new starter template for [Fly.io](https://fly.io/). Fly.io is a platform for running applications globally. It is a great fit for Coder workspaces because it allows you to run them close to your developers. See the blog post [here](https://coder.com/blog/remote-developer-environments-on-fly-io) for more information.
-![Fly.io Starter Template](.\static\fly-io-starter-template.png)
+![Fly.io starter template screenshot](.\static\fly-io-starter-template.png)
+![Fly.io regions map](https://fly.io/docs/images/fly-region-map.webp)
 
 ### Other Exciting Features
 
