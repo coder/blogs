@@ -19,7 +19,7 @@ A workspace proxy is a relay connection a developer can use when connecting with
 
 For deployment instructions, see [Docs](https://coder.com/docs/v2/latest/admin/workspace-proxies).
 
-![workspace proxies selection page](.\static\worksapce-proxies.png)
+![workspace proxies selection page](.\static\worksapce-proxies-2.png)
 
 ## Envbox
 
@@ -42,9 +42,14 @@ We have added a new starter template for [Fly.io](https://fly.io/). Fly.io is a 
 ![Fly.io starter template screenshot](.\static\fly-io-starter-template.png)
 ![Fly.io regions map](https://fly.io/docs/images/fly-region-map.webp)
 
+## Open in Coder
+
+Now you can generate _Open In Coder_ buttons for your templates to provide a one-click experience for your developers. See the [docs](https://coder.com/docs/v2/latest/templates/open-in-coder) for more information.
+
+![Open in Coder button](.\static\open-in-coder.png)
+
 ### Other Exciting Features
 
 - Ability to use non-localhost addresses with `coder port-forward` [docs](https://coder.com/docs/v2/latest/cli/port-forward)
-- Generate _Open In Coder_ buttons for your templates to provide a one-click experience for your developers. [#7501](https://github.com/coder/coder/pull/7501)
 - Add or remove licenses from the dashboard.
 - Added support for X11 forwarding in the Coder CLI. [docs](https://coder.com/docs/v2/latest/cli/ssh)
