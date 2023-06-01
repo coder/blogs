@@ -19,7 +19,8 @@ A workspace proxy is a relay connection a developer can use when connecting with
 
 For deployment instructions, see [Docs](https://coder.com/docs/v2/latest/admin/workspace-proxies).
 
-![workspace proxies selection page](.\static\worksapce-proxies-2.png)
+![workspace proxies selection page](.\static\worksapce-proxies.png)
+![workspace proxies selection page](.\static\proxydiagram.png)
 
 ## Envbox
 
@@ -39,8 +40,7 @@ Edit & duplicate templates directly from the Coder dashboard. This feature is av
 ## Fly.io Starter Template
 
 We have added a new starter template for [Fly.io](https://fly.io/). Fly.io is a platform for running applications globally. It is a great fit for Coder workspaces because it allows you to run them close to your developers. See the blog post [here](https://coder.com/blog/remote-developer-environments-on-fly-io) for more information.
-![Fly.io starter template screenshot](.\static\fly-io-starter-template.png)
-![Fly.io regions map](https://fly.io/docs/images/fly-region-map.webp)
+![Fly.io regions map and starter template](./static/fly-regions.png)
 
 ## Open in Coder
 
