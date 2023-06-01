@@ -46,8 +46,6 @@ We have added a new starter template for [Fly.io](https://fly.io/). Fly.io is a 
 
 Now you can generate _Open In Coder_ buttons for your templates to provide a one-click experience for your developers. See the [docs](https://coder.com/docs/v2/latest/templates/open-in-coder) for more information.
 
-![Open in Coder button](.\static\open-in-coder.png)
-
 ### Other Exciting Features
 
 - Ability to use non-localhost addresses with `coder port-forward` [docs](https://coder.com/docs/v2/latest/cli/port-forward)
