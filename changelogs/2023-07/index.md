@@ -29,7 +29,7 @@ Setting up a workspace proxy is easy: just 2 commands let you support developers
 
 Developers can choose the fastest workspace proxy for them.
 
-![Choosing a workspace proxy](.\static\workspace-proxies.png)
+![Choosing a workspace proxy](./static/choosing-workspace-proxy.png)
 
 Coder also shows latency times at the bottom of the workspace and web terminal pages.
 
