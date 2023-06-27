@@ -4,6 +4,8 @@ date: July 1, 2023
 author: Marc Paquette
 ---
 
+This month's new features give admins better insight into their Coder instance and give developers support for Developer Containers and OpenStack.
+
 ## Grafana Dashboard
 
 ![Grafana dashboard](./static/grafana-dashboard.png)
