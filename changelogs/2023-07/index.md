@@ -4,13 +4,13 @@ date: July 1, 2023
 author: Marc Paquette
 ---
 
-This month's new features give admins better insight into their Coder instance and give developers support for Developer Containers and OpenStack.
+We're excited to share this month's new features. They give admins better insight into their Coder instance and give developers support for VS Code Devcontainers and OpenStack.
 
 ## Grafana Dashboard
 
 ![Grafana dashboard](./static/grafana-dashboard.png)
 
-[Scaling](https://coder.com/docs/v2/latest/admin/scale) Coder is easier to monitor with support for [Grafana](https://grafana.com/). Coder can already generate [Prometheus metrics](https://coder.com/docs/v2/latest/admin/prometheus). Now you can keep an eye on these metrics in a Grafana dashboard.
+Coder can already generate [Prometheus metrics](https://coder.com/docs/v2/latest/admin/prometheus). We've added a sample Grafana dashboard that you can import. It has important metrics for keeping an eye on [scaling](https://coder.com/docs/v2/latest/admin/scale) Coder and measuring adoption.
 
 
 ## Agent Metadata
@@ -20,6 +20,7 @@ Developers can see realtime CPU usage, disk usage, or almost any other informati
 You define metadata in a template as `metadata` arguments in the `resource "coder_agent" "main"` block. This metadata appears in the Coder web page of the running workspace.
 
 You can get CPU and memory usage information for the workspace with the `coder stat` command. This command gives more accurate usage info than `top` and `free`, which show usage for the host machine, not the container.
+
 
 ## Workspace Proxies
 
@@ -38,13 +39,14 @@ Coder also shows latency times at the bottom of the workspace and web terminal p
 ![Latency in the web terminal](./static/web-terminal-latency.png)
 
 
-## Developer Containers
+## Devcontainers
 
-You can bring your own VS Code [Developer Containers](https://containers.dev/) to Coder. Let your developers focus on their dependencies while your platform teams work on infrastructure.
+You can bring your own VS Code [devcontainers](https://containers.dev/) to Coder. Let your developers focus on their dependencies while your platform teams work on infrastructure.
 
-Coder supports Dev Containers out of the box. You only need to provide a URL and Coder does the rest: a workspace builds then starts a container for your development environment.
+Coder supports devcontainers out of the box. You only need to provide a URL and Coder does the rest: a workspace builds then starts a container for your development environment.
 
 To support this feature, Coder started [envbuilder](https://github.com/coder/envbuilder), an open source project that rebuilds its own container from a `devcontainer.json` file.
+
 
 ## OpenStack
 
