@@ -6,7 +6,7 @@ Railway is a simple and powerful deployment platform that focuses on giving you 
 
 Start your deployment by clicking the button below. This will take you to Railway.app where you can sign up for a free account and deploy Coder.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/cUQ8_P?referralCode=tfH8Uw)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/coder?referralCode=tfH8Uw)
 
 ### 1. Fill the environment variables
 
