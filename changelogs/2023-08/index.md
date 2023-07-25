@@ -52,9 +52,11 @@ Coder also shows latency times at the bottom of the workspace and web terminal p
 ![Latency in the web terminal](./static/web-terminal-latency.png)
 
 
-### Command-line Auditing
+### Command-Line Auditing
 
-Administrators can log commands that developers enter on the command line. Coder captures commands entered in a workspace from SSH or the web terminal. You can capture and filter this log with tools like [Splunk](https://www.splunk.com/).
+Administrators can log commands that developers enter on the command line. You can use this feature to make sure developers are not running potentially insecure commands or oversee the roll out of new tools.
+
+Coder captures commands entered in a workspace from SSH or the web terminal. You can capture and filter this data with tools like [Splunk](https://www.splunk.com/).
 
 This service runs in a sidecar container. We've created the [exectrace](https://github.com/coder/exectrace) project to support this feature.
 
