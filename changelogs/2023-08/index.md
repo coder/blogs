@@ -4,7 +4,7 @@ date: August 1, 2023
 author: Marc Paquette
 ---
 
-We're excited to share this month's new features. They give admins better insights into their Coder instance and new tools to act on them. And we've given developers more options for working with VS Code Devcontainers and JetBrains IDEs.
+We're excited to share this month's new features. They give admins better insights into their Coder instance and new tools to act on them. And we've given developers an easier way to work with VS Code Devcontainers.
 
 For more details on the features below, see our improved [Changelog](https://github.com/coder/coder/releases).
 
@@ -58,17 +58,14 @@ Administrators can log commands that developers enter on the command line. Coder
 
 This service runs in a sidecar container. We've created the [exectrace](https://github.com/coder/exectrace) project to support this feature.
 
+This feature is available for [Enterprise](https://coder.com/docs/v2/latest/enterprise) users.
+
 
 ### Better scheduling
 
-We've improved the way that Coder starts and stops workspaces to match how developers actually use them. Instead of a fixed time for automatic shutdown, a Coder workspace can wait for a period of inactivity. You can also configure a template to shutdown with more flexible time periods like daily, weekly, day of week, and so on.
+Save cloud costs with improved scheduling. You can configure workspaces to start and stop to match how developers actually use them. Instead of a fixed time to stop, a Coder workspace can wait for a period of inactivity. You can also configure a template to shutdown with more flexible time periods like daily, weekly, day of week, and so on.
 
-
-### JetBrains Gateway Plugin
-
-You don't have to leave your JetBrains IDE to use Coder. You can connect your JetBrains IDE to Coder with the [JetBrains Gateway plugin](https://plugins.jetbrains.com/plugin/19620-coder).
-
-See the [Coder docs](https://coder.com/docs/v2/latest/ides/gateway) for more information.
+This feature is available for [Enterprise](https://coder.com/docs/v2/latest/enterprise) users.
 
 
 ### Devcontainers
